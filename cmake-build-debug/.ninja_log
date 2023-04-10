@@ -1,0 +1,18 @@
+# ninja log v5
+9	183	7028388419045046	CMakeFiles/Student_Record_System.dir/main.c.obj	c50e6f69dd0f0ad1
+171	303	7028366580248641	Student_Record_System.exe	c94a1e3798cdab53
+5	218	7028389295224555	CMakeFiles/Student_Record_System.dir/Program/Program.c.obj	a4fbd87718a63add
+12	161	7028389532847567	CMakeFiles/Student_Record_System.dir/Filehandling/Filehandling.c.obj	169d13a82eb64e27
+3	233	7028390002108033	CMakeFiles/Student_Record_System.dir/Student/Student.c.obj	602cb430d662b9eb
+13	272	7028391150212280	CMakeFiles/Student_Record_System.dir/main.c.obj	c50e6f69dd0f0ad1
+37	280	7028391150391832	CMakeFiles/Student_Record_System.dir/Program/Program.c.obj	a4fbd87718a63add
+47	280	7028391150371921	CMakeFiles/Student_Record_System.dir/Validation/Validation.c.obj	1bd113ee10edb665
+77	282	7028391150461633	CMakeFiles/Student_Record_System.dir/Student/Student.c.obj	602cb430d662b9eb
+67	298	7028391150591265	CMakeFiles/Student_Record_System.dir/Filehandling/Filehandling.c.obj	169d13a82eb64e27
+24	251	7028391295426484	CMakeFiles/Student_Record_System.dir/main.c.obj	c50e6f69dd0f0ad1
+38	302	7028391295915273	CMakeFiles/Student_Record_System.dir/Filehandling/Filehandling.c.obj	169d13a82eb64e27
+6	312	7028391295935110	CMakeFiles/Student_Record_System.dir/Program/Program.c.obj	a4fbd87718a63add
+47	319	7028391296174476	CMakeFiles/Student_Record_System.dir/Student/Student.c.obj	602cb430d662b9eb
+66	320	7028391296204391	CMakeFiles/Student_Record_System.dir/Linked_List/Linked_List.c.obj	c9f039978e28281a
+82	329	7028391296294229	CMakeFiles/Student_Record_System.dir/Validation/Validation.c.obj	1bd113ee10edb665
+329	463	7028391297560085	Student_Record_System.exe	1d036e355411cd6b
