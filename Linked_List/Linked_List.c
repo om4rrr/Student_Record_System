@@ -42,11 +42,17 @@ StudentNode* AddNewStudent(StudentNode *ptr, StudentNode *head){
 
     printf("\nEnter Student ID \"Only digits are allowed\" : ");
     temp->Data.Student.ID = CheckExistingID(head);
+    printf("\nEnter Student National ID : ");
+    temp->Data.Student.NationalID = ValidateNationalIDLength();
+    printf("\nEnter Student Phone Number : +20");
+    temp->Data.Student.PhoneNumber = CheckPhoneNumber();
     printf("\nEnter Student Name : ");
     while(getchar()!='\n');
     temp->Data.Student.Name = ValidName();
     printf("\nEnter Student Password : ");
     temp->Data.Student.Password = CheckingPasswordStrength();
+    printf("\nEnter Student E-mail : ");
+    temp->Data.Student.Mail = CheckMailValidation();
     printf("\nEnter Student Gender : ");
     temp->Data.Student.Gender = ValidateGender();
     printf("\nEnter Student Age : ");
@@ -74,7 +80,7 @@ StudentNode* AddNewStudent(StudentNode *ptr, StudentNode *head){
     temp->Data.Subject.DataStructure.Rate   = CalcSubjectGrade(temp->Data.Subject.DataStructure.Degree);
     temp->Data.Subject.Electronics.Rate     = CalcSubjectGrade(temp->Data.Subject.Electronics.Degree);
     temp->Data.Subject.Programming.Rate     = CalcSubjectGrade(temp->Data.Subject.Programming.Degree);
-    temp->Data.Subject.Measurements.Rate     = CalcSubjectGrade(temp->Data.Subject.Measurements.Degree);
+    temp->Data.Subject.Measurements.Rate    = CalcSubjectGrade(temp->Data.Subject.Measurements.Degree);
 
     // Assign Student Total Degree
 

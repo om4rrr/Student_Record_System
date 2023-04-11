@@ -15,6 +15,10 @@ int main()
     ReadFromFile(&HeadStudent);
 
 
+    printf("Enter your ID : ");
+    long ID = CheckStudentID(HeadStudent);
+    printf("Enter your Password : ");
+    char *Password = CheckStudentPassword(HeadStudent, ID);
 
 
     WriteToFile(HeadStudent);

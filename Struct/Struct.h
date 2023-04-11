@@ -4,10 +4,13 @@
 
 typedef struct UserInfo{
     long ID;
+    long NationalID;
+    long PhoneNumber;
     int  Age;
     char *Name;
     char *Password;
     char *Gender;
+    char *Mail;
 }UserInfo;
 
 

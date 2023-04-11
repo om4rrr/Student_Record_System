@@ -8,6 +8,20 @@
 
 long ValidateIDLength();
 
+long ValidateNationalIDLength();
+
+long ValidatePhoneNumberLength();
+
+long CheckPhoneNumber();
+
+bool isChar(char c);
+
+bool isDigit(const char c);
+
+bool IsValid(char *email);
+
+char *CheckMailValidation();
+
 long CheckExistingID(StudentNode *head);
 
 char* ValidName();

@@ -25,11 +25,102 @@ long ValidateIDLength(){
 }
 
 
+// Validate Student National ID Length
+
+long ValidateNationalIDLength(){
+    int count;
+    long ID, temp;
+    do{
+        count = 0;
+        scanf("%ld",&ID);
+        temp = ID;
+        while (ID != 0) {
+            count++;
+            ID /= 10;
+        }
+    } while (count!=14 && printf("\nID must consist of 14 digits, Try again..\nEnter Student National ID : "));
+    return temp;
+}
+
+// Validate Student Phone number Length
+
+long ValidatePhoneNumberLength(){
+    int count;
+    long ID, temp;
+    do{
+        count = 0;
+        scanf("%ld",&ID);
+        temp = ID;
+        while (ID != 0) {
+            count++;
+            ID /= 10;
+        }
+    } while (count!=10 && printf("\nPhone Number must consist of 11 digits, Try again..\n"
+                                        "Enter Student Phone Number : +20"));
+    return temp;
+}
+
+// Check Phone Number
+
+long CheckPhoneNumber(){
+
+    long PhoneNumber;
+    int var1,var2;
+    do{
+        PhoneNumber = ValidatePhoneNumberLength();
+        var1 = PhoneNumber%(long)1e10;
+        var2 = PhoneNumber%(long)1e19;
+    } while ((var1 != 1 &&(var2 != 0 || var2 != 1 ||  var2 != 2 ||  var2 != 5))
+             && printf("\nWrong Phone Number, Try again..\nEnter Student Phone Number : +20"));
+
+}
+
+
+
+// check E-mail validation
+
+bool isChar(char c)
+{
+    return ((c >= 'a' && c <= 'z')
+            || (c >= 'A' && c <= 'Z'));
+}
+bool isDigit(const char c)
+{
+    return (c >= '0' && c <= '9');
+}
+
+bool IsValid(char *email)
+{
+    if (!isChar(email[0]))  return 0;
+
+    int At = -1, Dot = -1;
+
+    for (int i = 0;i < Strlen(email); i++) {
+
+        if (email[i] == '@')  At = i;
+        else if (email[i] == '.') Dot = i;
+    }
+    if (At == -1 || Dot == -1) return 0;
+
+    if (At > Dot) return 0;
+
+    return !(Dot >= (Strlen(email) - 1));
+}
+
+char *CheckMailValidation(){
+    char *Mail = NULL;
+    Mail = (char*) malloc(MAX_STRING_LENGTH*sizeof(char));
+    do{
+        Mail = SetString();
+    } while (!IsValid(Mail) && printf("Invalid E-mail, Try again...\nEnter Student E-mail : "));
+    return Mail;
+}
+
 // Checking Existing ID
 
 
 long CheckExistingID(StudentNode *head){
-    struct StudentNode *ptr = NULL;
+    StudentNode *ptr = NULL;
     bool flag;
     long ID;
     do{
