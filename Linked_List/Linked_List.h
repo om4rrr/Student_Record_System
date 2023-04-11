@@ -15,12 +15,16 @@ typedef struct AdminNode{
 }AdminNode;
 
 
-void SearchForStudent(StudentNode *head, long ID);
+void PrintStudentInfo(StudentNode *head, long ID);
 
 StudentNode* AddNewStudent(StudentNode *ptr, StudentNode *head);
 
 
-StudentNode* AddNewNode(StudentNode *ptr1, StudentInfo Data);
+int AddNewNode(StudentNode ** root, StudentInfo Data);
+
+void ModifyStudentDegree(struct StudentNode *head, long ID);
+
+void DelStudent(StudentNode** head, long ID);
 
 
 

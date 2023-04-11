@@ -4,9 +4,10 @@
 #include "Linked_List.h"
 #include "../Validation/Validation.h"
 #define MAX_STRING_LENGTH 50
-// Search for Existing Student
 
-void SearchForStudent(StudentNode *head, long ID){
+// Print Student Information
+
+void PrintStudentInfo(StudentNode *head, long ID){
     struct StudentNode *ptr = NULL;
     ptr = head;
     while(ptr != NULL)
@@ -18,13 +19,12 @@ void SearchForStudent(StudentNode *head, long ID){
             printf("\n    Subject      \t\tDegree\t\tGrade\n\n");
             printf(" Digital_Circuits\t\t  %d \t\t  %s\n",ptr->Data.Subject.DigitalCircuits.Degree,ptr->Data.Subject.DigitalCircuits.Rate);
             printf(" Control_System  \t\t  %d \t\t  %s\n",ptr->Data.Subject.ControlSystem.Degree  ,ptr->Data.Subject.ControlSystem.Rate);
-            printf(" Data_Structure  \t\t  %d \t\t  %s\n",ptr->Data.Subject.Programming.Degree    ,ptr->Data.Subject.Programming.Rate);
-            printf(" Electronics     \t\t  %d \t\t  %s\n",ptr->Data.Subject.Programming.Degree    ,ptr->Data.Subject.Electronics.Rate);
-            printf(" Programming     \t\t  %d \t\t  %s\n",ptr->Data.Subject.DataStructure.Degree  ,ptr->Data.Subject.DataStructure.Rate);
-            printf(" Measurements     \t\t  %d \t\t  %s\n",ptr->Data.Subject.Measurements.Degree    ,ptr->Data.Subject.Measurements.Rate);
+            printf(" Data_Structure  \t\t  %d \t\t  %s\n",ptr->Data.Subject.DataStructure.Degree  ,ptr->Data.Subject.DataStructure.Rate);
+            printf(" Electronics     \t\t  %d \t\t  %s\n",ptr->Data.Subject.Electronics.Degree    ,ptr->Data.Subject.Electronics.Rate);
+            printf(" Programming     \t\t  %d \t\t  %s\n",ptr->Data.Subject.Programming.Degree    ,ptr->Data.Subject.Programming.Rate);
+            printf(" Measurements    \t\t  %d \t\t  %s\n",ptr->Data.Subject.Measurements.Degree  ,ptr->Data.Subject.Measurements.Rate);
             printf("______________________________________________________\n");
             PrintSupportingMessage(ptr->Data.TotalGrade);
-            break;
         }
         ptr = ptr->Link;
     }
@@ -98,13 +98,127 @@ StudentNode* AddNewStudent(StudentNode *ptr, StudentNode *head){
 
 // Add New Node In Linked List
 
-StudentNode* AddNewNode(StudentNode *ptr1, StudentInfo Data)
-{
-    StudentNode *ptr = NULL;
-    ptr = malloc(sizeof(StudentNode));
+int AddNewNode(StudentNode ** root, StudentInfo Data) {
+    StudentNode* NewNode = malloc(sizeof(StudentNode));
+    if (NewNode == NULL) {
+        exit(1);
+    }
+    NewNode->Link = NULL;
+    NewNode->Data= Data;
 
-    ptr->Data = Data;
-    ptr->Link = NULL;
-    ptr1->Link = ptr;
-    return ptr;
+    if (*root == NULL) {
+        *root = NewNode;
+        return 1;
+    }
+
+    StudentNode * curr = *root;
+    while (curr->Link != NULL) {
+        curr = curr->Link;
+    }
+    curr->Link = NewNode;
+    return  1;
+}
+
+// Modify Student Degree
+
+void ModifyStudentDegree(struct StudentNode *head, long ID)
+{
+    int Choice1,Choice2, NewDegree;
+    struct StudentNode *ptr = NULL;
+    do
+    {
+
+        ptr = head;
+        while(ptr != NULL)
+        {
+            if(ptr->Data.Student.ID == ID){
+
+                Choice1 = ChoiceSubjectValidate();
+                printf("\nEnter new Degree : "); NewDegree=ValidateSubjectDegree();
+                switch(Choice1)
+                {
+                    case 1 : ptr->Data.Subject.DigitalCircuits.Degree = NewDegree;
+                        ptr->Data.Subject.DigitalCircuits.Rate = CalcSubjectGrade(NewDegree);
+                        break;
+                    case 2 : ptr->Data.Subject.ControlSystem.Degree   = NewDegree;
+                        ptr->Data.Subject.ControlSystem.Rate   = CalcSubjectGrade(NewDegree);
+                        break;
+                    case 3 : ptr->Data.Subject.DataStructure.Degree   = NewDegree;
+                        ptr->Data.Subject.DataStructure.Rate   = CalcSubjectGrade(NewDegree);
+                        break;
+                    case 4 : ptr->Data.Subject.Electronics.Degree     = NewDegree;
+                        ptr->Data.Subject.Electronics.Rate     = CalcSubjectGrade(NewDegree);
+                        break;
+                    case 5 : ptr->Data.Subject.Programming.Degree     = NewDegree;
+                        ptr->Data.Subject.Programming.Rate     = CalcSubjectGrade(NewDegree);
+                        break;
+                    case 6 : ptr->Data.Subject.Measurements.Degree     = NewDegree;
+                        ptr->Data.Subject.Measurements.Rate     = CalcSubjectGrade(NewDegree);
+                        break;
+                }
+                ptr->Data.TotalDegree=CalcTotalDegree(ptr);
+                ptr->Data.TotalGrade= CalcTotalGrade(ptr->Data.TotalDegree);
+                ptr->Data.GPA= CalcGPA(ptr->Data.TotalDegree);
+
+                Choice2 = ChoiceAnotherSubjectValidate();
+            }
+            ptr = ptr->Link;
+        }
+    }while(Choice2 == 1);
+    free(ptr);
+    ptr = NULL;
+}
+
+
+
+// Delete Student
+
+
+void DelStudent(StudentNode** head, long ID)
+{
+
+    // find position
+
+    int pos=0;
+    StudentNode *ptr = NULL;
+    ptr = *head;
+    while(ptr != NULL)
+    {
+        pos++;
+        if(ptr->Data.Student.ID == ID) break;
+        ptr= ptr->Link;
+    }
+
+    StudentNode *current = *head, *previous = *head;
+
+    if(pos == 1)
+    {
+        *head = current->Link;
+        free(current);
+        current=NULL;
+    }
+    else
+    {
+        while(pos != 1)
+        {
+            previous = current;
+            current=current->Link;
+            pos--;
+        }
+        previous->Link = current->Link;
+        free(current);
+        current=NULL;
+    }
+}
+
+// Deallocate Node
+
+void deallocate(StudentNode ** root) {
+    StudentNode * curr = *root;
+    while (curr != NULL) {
+        StudentNode * aux = curr;
+        curr = curr->Link;
+        free(aux);
+    }
+    *root = NULL;
 }

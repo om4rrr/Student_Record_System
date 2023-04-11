@@ -11,7 +11,7 @@
 
 void WriteToFile(StudentNode* ptr);
 
-void ReadFromFile(StudentNode *head);
+void ReadFromFile(StudentNode **ptr);
 
 
 

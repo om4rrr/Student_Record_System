@@ -135,6 +135,31 @@ int ValidateSubjectDegree(){
 }
 
 
+// Validate choice to select Subject
+
+int ChoiceSubjectValidate()
+{
+    int Choice;
+    printf("\nselect the subject number to modify:\n1-Digital_Circuits\t2-Control_System\t3-Data_Structure\t"
+           "4-Electronics\t5-Programming\t6-Measurements\nEnter the number : ");
+    do{
+        scanf("%d",&Choice);
+    } while((Choice<1 || Choice>6) && printf("\nInvalid Choice! please try again..\nEnter the choice_number : "));
+    return Choice;
+}
+
+// Validate choice to select modify another Subject
+
+int ChoiceAnotherSubjectValidate()
+{
+    int choice;
+    do{
+        printf("\nwant to modify another Subject?     1-YES  2-NO\n");
+        scanf("%d",&choice);
+    } while((choice!=1 && choice!=2) && printf("Invalid Choice! please try again..\nEnter the choice_number : "));
+    return choice;
+}
+
 
 
 

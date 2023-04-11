@@ -20,5 +20,9 @@ char* ValidateGender();
 
 int ValidateSubjectDegree();
 
+int ChoiceSubjectValidate();
+
+int ChoiceAnotherSubjectValidate();
+
 
 #endif
