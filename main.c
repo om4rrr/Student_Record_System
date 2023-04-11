@@ -51,11 +51,14 @@ int main()
     HeadStudent->Link=currentStudent;
 
 
-    currentStudent = AddNewStudent(currentStudent,HeadStudent);
+   // currentStudent = AddNewStudent(currentStudent,HeadStudent);
     WriteToFile(HeadStudent);
 
 
     printf("hello");
+    StdIdCheck(HeadStudent);
+   // StdRec(HeadStudent);
+    //EditStdName( HeadStudent);
 
     //ReadFromFile(HeadStudent);
     //SearchForStudent(HeadStudent,111444444);
