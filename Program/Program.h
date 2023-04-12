@@ -20,16 +20,14 @@ void PrintSupportingMessage(char *str);
 
 char *StoreCorrectPassword(StudentNode *ptr,long ID);
 
-char *StoreStudentName(StudentNode *ptr,long ID);
+void StoreNewPassword(StudentNode *ptr,long ID, char *Password);
 
-long StoreNationalID(StudentNode *ptr,long ID);
+char *StoreNationalID(StudentNode *ptr,long ID);
 
 long StorePhoneNumber(StudentNode *ptr,long ID);
 
 char *StoreStudentMail(StudentNode *ptr,long ID);
 
-void RandomString(char *str, int Num);
-
-bool CheckStudentData(StudentNode *ptr);
+char *RandomString(char *str, int Num);
 
 #endif

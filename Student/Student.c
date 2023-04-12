@@ -6,10 +6,8 @@
 #include "../Linked_List/Linked_List.h"
 
 
-extern  StudentNode *CurrentStudent = NULL;
 
-
-void CheckStudentID(StudentNode *Head){
+long CheckStudentID(StudentNode *Head){
    StudentNode *Current=NULL;
 
    bool flag;
@@ -31,39 +29,42 @@ void CheckStudentID(StudentNode *Head){
         cnt++;
     }while(flag && printf("\nWrong ID, Try again..\nEnter your ID : "));
 
-    CurrentStudent = Current;
+    return ID;
 }
 
 
 
-bool CheckStudentPassword(StudentNode *CurrentStudent){
+bool CheckStudentPassword(StudentNode *Head, long ID){
 
-    char *Password = NULL;
+    char *CorrectPassword = NULL, *Password = NULL;
+    Password = (char *) malloc(MAX_STRING_LENGTH*sizeof(short ));
+    CorrectPassword = StoreCorrectPassword(Head,ID);
     int cnt = 0, var = 0; bool f = false;
 
     do{
-
     if(f) scanf("%d",&var);
     if(var == 1)
     {
-        if(CheckStudentData(CurrentStudent))
+        if(CheckStudentData(Head, ID))
         {
             char *str = NULL;
             str = CheckingRandomPasswordStrength();
-            printf("Your New Password is \"%s\"",str);
+            printf("\nYour New Password is \"%s\"",str);
+            StoreNewPassword(Head,ID,str);
             return true;
         }else{
             printf("Sorry, You entered wrong Information three times, Try later...");
             return false;
         }
     }
-    else{
-        if(cnt >= 2) {printf("Sorry, You entered wrong Password three times, Try later..."); return false;}
+    else
+    {
+        if(cnt > 2) {printf("Sorry, You entered wrong Password three times, Try later..."); return false;}
         if(f)printf("\nEnter your password : ");
         Password = SetString();
         cnt++;
     }
-    }while(strcmp(CurrentStudent->Data.Student.Password,Password) && printf("\nWrong Password, \"if you forget your"
+    }while(strcmp(CorrectPassword,Password) && printf("\nWrong Password, \"if you forget your"
                                                 "password... Enter -1- , if not and want to ""try again... Enter -2-\"\nEnter Number : ") && (f = true));
     return true;
 }

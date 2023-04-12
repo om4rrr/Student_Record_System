@@ -15,21 +15,18 @@ int main()
     ReadFromFile(&HeadStudent);
 
 
-    printf("Enter your ID : ");
-    CheckStudentID(HeadStudent);
-    printf("Enter your Password : ");
-    if (CheckStudentPassword(HeadStudent)) printf("\nhhhhhhhhhhhh\n");
-    else printf("\nggggggg\n");
 
+    printf("\nEnter your ID : ");
+    long ID = CheckStudentID(HeadStudent);
+    printf("\nEnter your Password : ");
+    if (CheckStudentPassword(HeadStudent, ID)) printf("");
+    else printf("");
 
-
-
-
+    printf("\n\n%s\n",HeadStudent->Data.Student.Password);
     //PrintStudentInfo(HeadStudent,123456789);
 
 
     WriteToFile(HeadStudent);
-
     deallocate(&HeadStudent);
     return 0;
 }

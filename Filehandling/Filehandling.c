@@ -17,7 +17,7 @@ void WriteToFile(StudentNode* ptr) {
     current = ptr;
     while(current != NULL)
     {
-        fprintf(file,"%ld, %ld, %ld, %d, %s, %s, %s, %s, %d, %s, %d, %s, %d, %s, %d, %s, %d, %s, %d, %s, %lf, %s, %lf,\n",
+        fprintf(file,"%ld, %s, %ld, %d, %s, %s, %s, %s, %d, %s, %d, %s, %d, %s, %d, %s, %d, %s, %d, %s, %lf, %s, %lf,\n",
                 current->Data.Student.ID,current->Data.Student.NationalID,current->Data.Student.PhoneNumber,
                 current->Data.Student.Age,current->Data.Student.Name,current->Data.Student.Password,
                 current->Data.Student.Gender,current->Data.Student.Mail,
@@ -51,6 +51,7 @@ void ReadFromFile(StudentNode **ptr) {
     StudentNode *current = NULL;
     current = (StudentNode *)malloc(sizeof(StudentNode));
     do{
+        current->Data.Student.NationalID     = malloc(MAX_STRING_LENGTH*sizeof(char));
         current->Data.Student.Name     = malloc(MAX_STRING_LENGTH*sizeof(char));
         current->Data.Student.Password = malloc(MAX_STRING_LENGTH*sizeof(char));
         current->Data.Student.Mail     = malloc(MAX_STRING_LENGTH*sizeof(char));
@@ -63,9 +64,9 @@ void ReadFromFile(StudentNode **ptr) {
         current->Data.Subject.Programming.Rate      = malloc(2*sizeof(char));
         current->Data.Subject.Measurements.Rate     = malloc(2*sizeof(char));
 
-    }while(fscanf(file, "%ld, %ld, %ld, %d, %49[^,], %49[^,], %49[^,], %49[^,], %d, %49[^,], %d, %49[^,], %d, %49[^,],"
+    }while(fscanf(file, "%ld, %49[^,], %ld, %d, %49[^,], %49[^,], %49[^,], %49[^,], %d, %49[^,], %d, %49[^,], %d, %49[^,],"
                         "%d, %49[^,], %d, %49[^,], %d, %49[^,], %lf, %49[^,], %lf,\n",
-                  &current->Data.Student.ID,&current->Data.Student.NationalID,&current->Data.Student.PhoneNumber,
+                  &current->Data.Student.ID,current->Data.Student.NationalID,&current->Data.Student.PhoneNumber,
                   &current->Data.Student.Age,current->Data.Student.Name,current->Data.Student.Password,
                   current->Data.Student.Gender,current->Data.Student.Mail,
                   &current->Data.Subject.DigitalCircuits.Degree,current->Data.Subject.DigitalCircuits.Rate,

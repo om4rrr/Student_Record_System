@@ -8,7 +8,7 @@
 
 long ValidateIDLength();
 
-long ValidateNationalIDLength();
+char *ValidateNationalIDLength();
 
 long ValidatePhoneNumberLength();
 
@@ -39,6 +39,8 @@ int ValidateSubjectDegree();
 int ChoiceSubjectValidate();
 
 int ChoiceAnotherSubjectValidate();
+
+bool CheckStudentData(StudentNode *CurrentStudent,long ID);
 
 
 #endif

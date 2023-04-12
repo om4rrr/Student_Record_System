@@ -4,7 +4,7 @@
 
 typedef struct UserInfo{
     long ID;
-    long NationalID;
+    char *NationalID;
     long PhoneNumber;
     int  Age;
     char *Name;

@@ -27,19 +27,13 @@ long ValidateIDLength(){
 
 // Validate Student National ID Length
 
-long ValidateNationalIDLength(){
-    int count;
-    long ID, temp;
+char *ValidateNationalIDLength(){
+    char * NationalID;
     do{
-        count = 0;
-        scanf("%ld",&ID);
-        temp = ID;
-        while (ID != 0) {
-            count++;
-            ID /= 10;
-        }
-    } while (count!=14 && printf("\nID must consist of 14 digits, Try again..\nEnter Student National ID : "));
-    return temp;
+        NationalID = SetString();
+
+    } while (Strlen(NationalID)!=15 && printf("\nID must consist of 14 digits, Try again..\nEnter Student National ID : "));
+    return NationalID;
 }
 
 // Validate Student Phone number Length
@@ -205,7 +199,7 @@ char *CheckingRandomPasswordStrength(){
     bool Special = false;
 
     do{
-        RandomString(str,10);
+        str = RandomString(str,10);
         for(int i = 0; i < Strlen(str); i++)
         {
             if (str[i] >= 'a' && str[i] <= 'z') Lower = true;
@@ -278,7 +272,53 @@ int ChoiceAnotherSubjectValidate()
 }
 
 
+// Check Student Data to chang Password
 
+bool CheckStudentData(StudentNode *Head,long ID){
+
+    printf("\n\"You Should enter some information to be able to change your password\"\n");
+
+
+    // Take National ID
+
+    char *CorrectNationalID = NULL,*NationalID  = NULL;
+    CorrectNationalID = StoreNationalID(Head, ID);
+    int cnt = 0;
+    printf("\nEnter your National_ID : ");
+    do{
+        NationalID = SetString();
+        cnt++;
+    }while(strcmp(NationalID,CorrectNationalID) && cnt < 3 && printf("\nWrong National ID, Try again...\nEnter your National_ID : "));
+    if(cnt >= 3) { return false;}
+    // Take Phone Number
+
+    long CorrectPhoneNumber,PhoneNumber;
+    CorrectPhoneNumber = StorePhoneNumber(Head,ID);
+
+    cnt = 0;
+    printf("\nEnter your Phone Number : ");
+    do{
+        if(cnt > 2) {printf("Sorry, You entered wrong Phone Number three times"); return false;}
+        scanf("%ld",&PhoneNumber);
+        cnt++;
+    }while(CorrectPhoneNumber != PhoneNumber && printf("\nWrong Phone Number, Try again...\nEnter your Phone Number : "));
+
+
+    // Take E-mail
+
+    char *CorrectMail = NULL,*Mail = NULL;
+    CorrectMail = StoreStudentMail(Head, ID);
+
+    cnt = 0;
+    printf("\nEnter your E-mail : ");
+    do{
+        if(cnt > 2) {printf("Sorry, You entered wrong E-mail three times"); return false;}
+        Mail = SetString();
+        cnt++;
+    }while(strcmp(Mail,CorrectMail) && printf("\nWrong E-mail, Try again...\nEnter your E-mail : "));
+
+    return true;
+}
 
 
 
