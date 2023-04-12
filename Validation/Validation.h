@@ -38,9 +38,17 @@ int ValidateSubjectDegree();
 
 int ChoiceSubjectValidate();
 
+int ChooseModeValidate();
+
+int ChooseStudentFeaturesValidate(StudentNode *Head, long ID);
+
 int ChoiceAnotherSubjectValidate();
 
 bool CheckStudentData(StudentNode *CurrentStudent,long ID);
+
+long CheckStudentID(StudentNode *Head);
+
+bool CheckStudentPassword(StudentNode *CurrentStudent, long ID);
 
 
 #endif

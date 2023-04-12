@@ -20,7 +20,7 @@ long ValidateIDLength(){
             count++;
             ID /= 10;
         }
-    } while (count!=9 && printf("\nID must consist of 9 digits, Try again..\nEnter Student ID : "));
+    } while (count!=9 && printf("\nID must consist of 9 digits, Try again..\nEnter The ID : "));
     return temp;
 }
 
@@ -153,7 +153,7 @@ char* ValidName(){
             else if(str[i] == ' ') c++;
             else {check = false; break; }
         }
-    }while(((c < 2)  || !check) && printf("\nInvalid Name, Please enter first, middle, and last name correctly\nEnter Student Name : "));
+    }while(((c < 2)  || !check) && printf("\nInvalid Name, Please enter first, middle, and last name correctly\nEnter The Name : "));
     return str;
 }
 
@@ -181,13 +181,12 @@ char *CheckingPasswordStrength(){
         }
     }while((Strlen(str) < 8 || !Lower || !Upper || !Digit || !Special) && printf("\nThe new password is weak, and will reduce the security of system\n"
                                                                                  "password must contain at least 8 characters,\none uppercase, one lowercase, one"
-                                                                                 "number and one special character.\n\nEnter Student Password : "));
+                                                                                 "number and one special character.\n\nEnter The Password : "));
     return str;
 }
 
 
 // Checking Random Password Strength
-
 
 char *CheckingRandomPasswordStrength(){
 
@@ -272,6 +271,36 @@ int ChoiceAnotherSubjectValidate()
 }
 
 
+
+
+// Validate choice to select UserMode
+
+int ChooseModeValidate(){
+    int choice;
+    do{
+        printf("\n\t\t\tWelcome to Student_Record_System !\t\t\t\t\t\t\n\nPlease Choose your mode"
+               "\n1. Student Mode\t\t\t2. Teaching Stuff Mode"
+               "\t\t\t3. Quit\nEnter Choice Number : ");
+        scanf("%d",&choice);
+    } while((choice!=1 && choice!=2 && choice!=3) && printf("Invalid Choice! please try again..\nEnter the Choice Number : "));
+    return choice;
+}
+
+
+// Validate choice to select Student Features
+
+int ChooseStudentFeaturesValidate(StudentNode *Head, long ID){
+    int choice;
+    do{
+        printf("Enter appropriate number to perform following tasks "
+               "\n1. View your record\t\t2. Edit your password."
+               "\t\t3. Edit your name\t\t4. Quit\nEnter Choice Number : ");
+        scanf("%d",&choice);
+    } while((choice!=1 && choice!=2 && choice!= 3 && choice != 4) && printf("Invalid Choice! please try again..\nEnter the Choice Number : "));
+    return choice;
+}
+
+
 // Check Student Data to chang Password
 
 bool CheckStudentData(StudentNode *Head,long ID){
@@ -322,6 +351,69 @@ bool CheckStudentData(StudentNode *Head,long ID){
 
 
 
+// student log in
+
+long CheckStudentID(StudentNode *Head){
+    StudentNode *Current=NULL;
+
+    bool flag;
+    long ID;
+    int cnt = 0;
+    do{
+        if(cnt >= 9) printf("Sorry, You entered wrong ID many times") ;
+        Current = Head;
+        flag = true;
+        ID = ValidateIDLength();
+        while(Current != NULL)
+        {
+            if(ID == Current->Data.Student.ID){
+                flag = false;
+                break;
+            }
+            Current = Current->Link;
+        }
+        cnt++;
+    }while(flag && printf("\nWrong ID, Try again..\nEnter your ID : "));
+
+    return ID;
+}
+
+
+
+bool CheckStudentPassword(StudentNode *Head, long ID){
+    char *CorrectPassword = NULL, *Password = NULL;
+    CorrectPassword = StoreCorrectPassword(Head,ID);
+    int cnt = 0, var = 0; bool f = false;
+    do{
+        if(f) scanf("%d",&var);
+        if(var == 1)
+        {
+            if(CheckStudentData(Head, ID))
+            {
+                char *str = NULL;
+                str = CheckingRandomPasswordStrength(); // calling CheckingRandomPasswordStrength --> calling Generating RandomPassword
+                printf("\nYour New Password is \"%s\"",str);
+                StoreNewPassword(Head,ID,str);
+                return true; // go to next background (Student's features)
+            }else{
+                printf("Sorry, You entered wrong Information three times, Try later...");
+                return false; // return to previous background (Admin or Student)
+            }
+        }
+        else
+        {
+            if(cnt > 2) {printf("Sorry, You entered wrong Password three times, Try later..."); return false;}
+            if(f)printf("\nEnter your password : ");
+            Password = SetString();
+            cnt++;
+        }
+    }while(strcmp(CorrectPassword,Password) && printf("\nWrong Password, \"if you forget your"
+                                                      "password... Enter -1- , if not and want to ""try again... Enter -2-\"\nEnter Number : ") && (f = true));
+    return true;
+}
+
+
+/////////////////////////////////////////////////////
 
 
 

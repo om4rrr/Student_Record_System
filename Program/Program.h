@@ -24,10 +24,14 @@ void StoreNewPassword(StudentNode *ptr,long ID, char *Password);
 
 char *StoreNationalID(StudentNode *ptr,long ID);
 
+char *StudentName(StudentNode *ptr,long ID);
+
 long StorePhoneNumber(StudentNode *ptr,long ID);
 
 char *StoreStudentMail(StudentNode *ptr,long ID);
 
 char *RandomString(char *str, int Num);
+
+void  ChooseUserMode();
 
 #endif

@@ -6,8 +6,11 @@
 #include "../Linked_List/Linked_List.h"
 #define MAX_STRING_LENGTH 50
 
-long CheckStudentID(StudentNode *Head);
-bool CheckStudentPassword(StudentNode *CurrentStudent, long ID);
+
+void StudentMode(StudentNode *Head);
+
+
+
 void StdMode(StudentNode *CurrentStd);
 void StdRec(StudentNode *CurrentStd);
 void EditStdPass(StudentNode *CurrentStd);

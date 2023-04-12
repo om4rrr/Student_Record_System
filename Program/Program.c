@@ -1,6 +1,7 @@
 #include "../Libraries/Libraries.h"
 #include "../Struct/Struct.h"
 #include "../Linked_List/Linked_List.h"
+#include "../Validation/Validation.h"
 #include "Program.h"
 
 // We Calculate Student Total degree.
@@ -127,13 +128,13 @@ char* SetString(){
 void PrintSupportingMessage(char *str){
     if( !strcmp("A+",str) || !strcmp("A ",str) || !strcmp("A-",str) )
         printf("\nCongratulations !\nYour excellent results are a testament to your perseverance and determination,\n"
-               "and I have no doubt that you have a bright future ahead of you.");
+               "and I have no doubt that you have a bright future ahead of you.\n\n");
     else if(!strcmp("B+",str) || !strcmp("B ",str) || !strcmp("B-",str))
-        printf("\nCongratulations !\nKeep working hard and believing in yourself, and success shall follow you everywhere you go.\n");
+        printf("\nCongratulations !\nKeep working hard and believing in yourself, and success shall follow you everywhere you go.\n\n");
     else if(!strcmp("C+",str) || !strcmp("C ",str) || !strcmp("C-",str))
-        printf("\nCongratulations !\nKeep going, you can do better.\n");
+        printf("\nCongratulations !\nKeep going, you can do better.\n\n");
     else if(!strcmp("D+",str) || !strcmp("D ",str))
-        printf("\nCongratulations !\nKeep going, you can do better.\n");
+        printf("\nCongratulations !\nKeep going, you can do better.\n\n");
     else
         printf("failure is the opportunity to begin again more intelligently");
 
@@ -173,9 +174,9 @@ void StoreNewPassword(StudentNode *Head,long ID, char *Password){
     }
 }
 
-// Store Student Name
+// Student Name
 
-char *StoreStudentName(StudentNode *ptr,long ID){
+char *StudentName(StudentNode *ptr,long ID){
 
     StudentNode *Current=NULL;
     Current = ptr;
@@ -190,6 +191,7 @@ char *StoreStudentName(StudentNode *ptr,long ID){
         }
         Current = Current->Link;
     }
+    return Name;
 }
 
 // Store Student National ID
@@ -268,8 +270,6 @@ char *RandomString(char *str, int Num){
     str1[Num] = 0;
     return str1;
 }
-
-//
 
 
 
