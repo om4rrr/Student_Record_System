@@ -53,6 +53,7 @@ void ReadFromFile(StudentNode **ptr) {
     do{
         current->Data.Student.Name     = malloc(MAX_STRING_LENGTH*sizeof(char));
         current->Data.Student.Password = malloc(MAX_STRING_LENGTH*sizeof(char));
+        current->Data.Student.Mail     = malloc(MAX_STRING_LENGTH*sizeof(char));
         current->Data.Student.Gender   = malloc(7*sizeof(char));
         current->Data.TotalGrade       = malloc(2*sizeof(char));
         current->Data.Subject.DigitalCircuits.Rate  = malloc(2*sizeof(char));

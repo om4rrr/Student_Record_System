@@ -30,6 +30,6 @@ char *StoreStudentMail(StudentNode *ptr,long ID);
 
 void RandomString(char *str, int Num);
 
-bool CheckStudentData(StudentNode *ptr,long ID);
+bool CheckStudentData(StudentNode *ptr);
 
 #endif

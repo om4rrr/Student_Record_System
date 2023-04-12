@@ -28,6 +28,8 @@ char* ValidName();
 
 char *CheckingPasswordStrength();
 
+char *CheckingRandomPasswordStrength();
+
 int ValidateStudentAge();
 
 char* ValidateGender();

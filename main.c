@@ -11,16 +11,25 @@
 
 int main()
 {
-    StudentNode *HeadStudent =NULL;
+    StudentNode *HeadStudent = NULL;
     ReadFromFile(&HeadStudent);
 
 
     printf("Enter your ID : ");
-    long ID = CheckStudentID(HeadStudent);
+    CheckStudentID(HeadStudent);
     printf("Enter your Password : ");
-    char *Password = CheckStudentPassword(HeadStudent, ID);
+    if (CheckStudentPassword(HeadStudent)) printf("\nhhhhhhhhhhhh\n");
+    else printf("\nggggggg\n");
+
+
+
+
+
+    //PrintStudentInfo(HeadStudent,123456789);
 
 
     WriteToFile(HeadStudent);
+
+    deallocate(&HeadStudent);
     return 0;
 }

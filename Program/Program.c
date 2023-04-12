@@ -5,11 +5,11 @@
 
 // We Calculate Student Total degree.
 
-double CalcTotalDegree(StudentNode *head){
+double CalcTotalDegree(StudentNode *ptr1){
     StudentNode *ptr = NULL;
-    ptr = head;
+    ptr = ptr1;
     return ptr->Data.Subject.DigitalCircuits.Degree+ ptr->Data.Subject.ControlSystem.Degree
-           + ptr->Data.Subject.Programming.Degree   + ptr->Data.Subject.Programming.Degree
+           + ptr->Data.Subject.Programming.Degree   + ptr->Data.Subject.Electronics.Degree
            + ptr->Data.Subject.DataStructure.Degree + ptr->Data.Subject.Measurements.Degree;
 
 }
@@ -121,7 +121,6 @@ char *StoreCorrectPassword(StudentNode *ptr,long ID){
 
     char *Password = NULL;
     Password = (char *)malloc(MAX_STRING_LENGTH*sizeof(char));
-
     while(Current != NULL) {
         if (ID == Current->Data.Student.ID) {
             Password = Current->Data.Student.Password;
@@ -226,57 +225,43 @@ void RandomString(char *str, int Num){
     str[Num] = '\0';
 }
 
-/////////
+// Check Student Data to chang password
 
-bool CheckStudentData(StudentNode *ptr,long ID){
+bool CheckStudentData(StudentNode *CurrentStudent){
+
     printf("\n\"You Should enter some information to be able to change your password\"\n");
-    // Store Student National ID
-
-    long NationalID;
-    NationalID = StoreNationalID(ptr, ID);
-
-    // Store Student Phone Number
-
-    long PhoneNumber;
-    PhoneNumber = StoreNationalID(ptr, ID);
-
-    // Store Student E-mail
-
-    char *StudentMail = NULL;
-    StudentMail = (char *)malloc(MAX_STRING_LENGTH*sizeof(char));
-    StudentMail = StoreStudentMail(ptr, ID);
 
     // Take National ID
 
     int cnt = 0;
-    long NationalID1;
+    long NationalID;
     printf("\nEnter your National_ID : ");
     do{
         if(cnt > 2) {printf("Sorry, You entered wrong National ID three times"); return false;}
-        scanf("%ld",NationalID1);
+        scanf("%ld",NationalID);
         cnt++;
-    }while(NationalID1 != NationalID && printf("\nWrong National ID, Try again...\nEnter your National_ID : "));
+    }while(CurrentStudent->Data.Student.NationalID != NationalID && printf("\nWrong National ID, Try again...\nEnter your National_ID : "));
 
     // Take Phone Number
 
-    long PhoneNumber1; cnt = 0;
+    long PhoneNumber; cnt = 0;
     printf("\nEnter your Phone Number : ");
     do{
         if(cnt > 2) {printf("Sorry, You entered wrong Phone Number three times"); return false;}
-        scanf("%ld",PhoneNumber1);
+        scanf("%ld",PhoneNumber);
         cnt++;
-    }while(NationalID1 != NationalID && cnt < 4&& printf("\nWrong National ID, Try again...\nEnter your Phone Number : "));
+    }while(CurrentStudent->Data.Student.PhoneNumber != PhoneNumber && printf("\nWrong Phone Number, Try again...\nEnter your Phone Number : "));
+
 
     // Take E-mail
 
-    char *StudentMail1 = NULL; cnt = 0;
-    StudentMail1 = (char *)malloc(MAX_STRING_LENGTH*sizeof(char));
+    char *StudentMail = NULL; cnt = 0;
     printf("\nEnter your E-mail : ");
     do{
         if(cnt > 2) {printf("Sorry, You entered wrong E-mail three times"); return false;}
-        StudentMail1 = SetString();
+        StudentMail = SetString();
         cnt++;
-    }while(NationalID1 != NationalID && cnt < 4&& printf("\nWrong National ID, Try again...\nEnter your E-mail : "));
+    }while(strcmp(StudentMail,CurrentStudent->Data.Student.Mail) && printf("\nWrong E-mail, Try again...\nEnter your E-mail : "));
 
     return true;
 }

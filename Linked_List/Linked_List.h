@@ -25,6 +25,7 @@ int AddNewNode(StudentNode ** root, StudentInfo Data);
 void ModifyStudentDegree(struct StudentNode *head, long ID);
 
 void DelStudent(StudentNode** head, long ID);
+void deallocate(StudentNode ** root);
 
 
 

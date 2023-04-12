@@ -186,10 +186,36 @@ char *CheckingPasswordStrength(){
             else Special = true;
         }
     }while((Strlen(str) < 8 || !Lower || !Upper || !Digit || !Special) && printf("\nThe new password is weak, and will reduce the security of system\n"
-                                                                                 "password must contain at least 8 characters,\none uppercase, one lowercase, one number and one special character.\n\nEnter Student Password : "));
+                                                                                 "password must contain at least 8 characters,\none uppercase, one lowercase, one"
+                                                                                 "number and one special character.\n\nEnter Student Password : "));
     return str;
 }
 
+
+// Checking Random Password Strength
+
+
+char *CheckingRandomPasswordStrength(){
+
+    char *str = NULL;
+
+    bool Lower   = false;
+    bool Upper   = false;
+    bool Digit   = false;
+    bool Special = false;
+
+    do{
+        RandomString(str,10);
+        for(int i = 0; i < Strlen(str); i++)
+        {
+            if (str[i] >= 'a' && str[i] <= 'z') Lower = true;
+            else if (str[i] >= 'A' && str[i] <= 'Z') Upper = true;
+            else if (str[i] - '0' >= 0 && str[i] - '0' <= 9) Digit = true;
+            else Special = true;
+        }
+    }while(!Lower || !Upper || !Digit || !Special);
+    return str;
+}
 
 // Validate Student Age  18 --> 50
 

@@ -6,109 +6,105 @@
 #include "../Linked_List/Linked_List.h"
 
 
-long CheckStudentID(StudentNode *ptr)
-{
+extern  StudentNode *CurrentStudent = NULL;
+
+
+void CheckStudentID(StudentNode *Head){
    StudentNode *Current=NULL;
+
    bool flag;
    long ID;
+   int cnt = 0;
     do{
-        Current = ptr;
+        if(cnt >= 9) printf("Sorry, You entered wrong ID many times") ;
+        Current = Head;
         flag = true;
         ID = ValidateIDLength();
         while(Current != NULL)
         {
-            if(ID == ptr->Data.Student.ID){
+            if(ID == Head->Data.Student.ID){
                 flag = false;
                 break;
             }
-            ptr = ptr->Link;
+            Current = Current->Link;
         }
+        cnt++;
     }while(flag && printf("\nWrong ID, Try again..\nEnter your ID : "));
-    return ID;
+
+    CurrentStudent = Current;
 }
 
 
 
-char *CheckStudentPassword(StudentNode *ptr,long ID){
-    StudentNode *Current=NULL;
-    Current = ptr;
-
-    // Store Student password
+bool CheckStudentPassword(StudentNode *CurrentStudent){
 
     char *Password = NULL;
-    Password = (char *)malloc(MAX_STRING_LENGTH*sizeof(char));
-    Password = StoreCorrectPassword(ptr, ID);
+    int cnt = 0, var = 0; bool f = false;
 
-    char *Password1 = NULL;
-    Password1 = (char *)malloc(MAX_STRING_LENGTH*sizeof(char));
-    int cnt1 = 0,cnt2 = 0, var; bool f = false;
     do{
 
     if(f) scanf("%d",&var);
     if(var == 1)
     {
-        if(CheckStudentData(ptr, ID))
+        if(CheckStudentData(CurrentStudent))
         {
             char *str = NULL;
-            str = (char *)malloc(MAX_STRING_LENGTH*sizeof(char));
-            RandomString(str,12);
+            str = CheckingRandomPasswordStrength();
             printf("Your New Password is \"%s\"",str);
+            return true;
         }else{
             printf("Sorry, You entered wrong Information three times, Try later...");
-
-
+            return false;
         }
     }
-    Password1 = SetString();
-    cnt1++;
-    }while(strcmp(Password1,Password) && printf("\nWrong Password...\n \"if you forget your"
-                                                "password... Enter --<<1>>-- , if not and want to "
-                                                "try again... Enter --<<2>>--\"\nEnter Number : ") && (f = true));
-
-    return Password1;
-}
-
-
-
-
-
-
-void StdMode(struct StudentNode *CurrentStd)
-{
-    int Choice;
-    label2:
-    printf("1. View your record.");
-    printf("\n2. Edit your password.");
-    printf("\n3. Edit your name");
-    printf("\n4. Exit");
-    printf("Enter Your choice");
-    scanf("%d",&Choice);
-    switch(Choice)
-    {
-        case 1: StdRec(CurrentStd); break;
-        case 2: EditStdPass(CurrentStd); break;
-        case 3: EditStdName(CurrentStd); break;
-
-        default : printf("\nInvalid Choice"); break;
-
+    else{
+        if(cnt >= 2) {printf("Sorry, You entered wrong Password three times, Try later..."); return false;}
+        if(f)printf("\nEnter your password : ");
+        Password = SetString();
+        cnt++;
     }
+    }while(strcmp(CurrentStudent->Data.Student.Password,Password) && printf("\nWrong Password, \"if you forget your"
+                                                "password... Enter -1- , if not and want to ""try again... Enter -2-\"\nEnter Number : ") && (f = true));
+    return true;
 }
-void StdRec(struct StudentNode *CurrentStd)
-{
 
-    printf("\nName : %s\t\tID : %ld \n",CurrentStd->Data.Student.Name,CurrentStd->Data.Student.ID);
-    printf("\nTotal Degree : %.2lf\tTotal Grade : %s     GPA : %.1lf \n",CurrentStd->Data.TotalDegree,CurrentStd->Data.TotalGrade,CurrentStd->Data.GPA);
-    printf("______________________________________________________\n");
-    printf("\n    Subject      \t\tDegree\t\tGrade\n\n");
-    printf(" Digital_Circuits\t\t  %d \t\t  %s\n",CurrentStd->Data.Subject.DigitalCircuits.Degree,CurrentStd->Data.Subject.DigitalCircuits.Rate);
-    printf(" Control_System  \t\t  %d \t\t  %s\n",CurrentStd->Data.Subject.ControlSystem.Degree  ,CurrentStd->Data.Subject.ControlSystem.Rate);
-    printf(" Data_Structure  \t\t  %d \t\t  %s\n",CurrentStd->Data.Subject.Programming.Degree    ,CurrentStd->Data.Subject.Programming.Rate);
-    printf(" Electronics     \t\t  %d \t\t  %s\n",CurrentStd->Data.Subject.Programming.Degree    ,CurrentStd->Data.Subject.Electronics.Rate);
-    printf(" Programming     \t\t  %d \t\t  %s\n",CurrentStd->Data.Subject.DataStructure.Degree  ,CurrentStd->Data.Subject.DataStructure.Rate);
-    printf(" Measurements    \t\t  %d \t\t  %s\n",CurrentStd->Data.Subject.Measurements.Degree    ,CurrentStd->Data.Subject.Measurements.Rate);
-    printf("______________________________________________________\n");
-    PrintSupportingMessage(CurrentStd->Data.TotalGrade);
-}
+//void StdMode(struct StudentNode *CurrentStd)
+//{
+//    int Choice;
+//    label2:
+//    printf("1. View your record.");
+//    printf("\n2. Edit your password.");
+//    printf("\n3. Edit your name");
+//    printf("\n4. Exit");
+//    printf("Enter Your choice");
+//    scanf("%d",&Choice);
+//    switch(Choice)
+//    {
+//        case 1: StdRec(CurrentStd); break;
+//        case 2: EditStdPass(CurrentStd); break;
+//        case 3: EditStdName(CurrentStd); break;
+//
+//        default : printf("\nInvalid Choice"); break;
+//    }
+//}
+//
+//
+//void StdRec(struct StudentNode *CurrentStd)
+//{
+//
+//    printf("\nName : %s\t\tID : %ld \n",CurrentStd->Data.Student.Name,CurrentStd->Data.Student.ID);
+//    printf("\nTotal Degree : %.2lf\tTotal Grade : %s     GPA : %.1lf \n",CurrentStd->Data.TotalDegree,CurrentStd->Data.TotalGrade,CurrentStd->Data.GPA);
+//    printf("______________________________________________________\n");
+//    printf("\n    Subject      \t\tDegree\t\tGrade\n\n");
+//    printf(" Digital_Circuits\t\t  %d \t\t  %s\n",CurrentStd->Data.Subject.DigitalCircuits.Degree,CurrentStd->Data.Subject.DigitalCircuits.Rate);
+//    printf(" Control_System  \t\t  %d \t\t  %s\n",CurrentStd->Data.Subject.ControlSystem.Degree  ,CurrentStd->Data.Subject.ControlSystem.Rate);
+//    printf(" Data_Structure  \t\t  %d \t\t  %s\n",CurrentStd->Data.Subject.Programming.Degree    ,CurrentStd->Data.Subject.Programming.Rate);
+//    printf(" Electronics     \t\t  %d \t\t  %s\n",CurrentStd->Data.Subject.Programming.Degree    ,CurrentStd->Data.Subject.Electronics.Rate);
+//    printf(" Programming     \t\t  %d \t\t  %s\n",CurrentStd->Data.Subject.DataStructure.Degree  ,CurrentStd->Data.Subject.DataStructure.Rate);
+//    printf(" Measurements    \t\t  %d \t\t  %s\n",CurrentStd->Data.Subject.Measurements.Degree    ,CurrentStd->Data.Subject.Measurements.Rate);
+//    printf("______________________________________________________\n");
+//    PrintSupportingMessage(CurrentStd->Data.TotalGrade);
+//}
 
 //void EditStdPass(struct StudentNode *CurrentStd)
 //{
