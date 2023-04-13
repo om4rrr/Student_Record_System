@@ -5,12 +5,10 @@
 #include "../Linked_List/Linked_List.h"
 #include "Filehandling.h"
 
+// Writing to Student file
 
-// Writing to file
-
-
-void WriteToFile(StudentNode* ptr) {
-    FILE* file = fopen("Data_base.txt", "w");
+void WriteToStudentFile(StudentNode* ptr) {
+    FILE* file = fopen("StudentDatabase.txt", "w");
     if (file == NULL) { printf("Unable to write"); exit(1); }
 
     StudentNode* current = NULL;
@@ -36,18 +34,15 @@ void WriteToFile(StudentNode* ptr) {
     current = NULL;
 }
 
+// Read from Student file
 
+void ReadStudentFile(StudentNode **ptr) {
 
-
-void ReadFromFile(StudentNode **ptr) {
-
-    FILE* file = fopen("Data_base.txt", "r");
+    FILE* file = fopen("StudentDatabase.txt", "r");
     if (file == NULL) {
         printf("\nUnable to open file\n");
         exit(1);
     }
-
-
     StudentNode *current = NULL;
     current = (StudentNode *)malloc(sizeof(StudentNode));
     do{
@@ -75,9 +70,61 @@ void ReadFromFile(StudentNode **ptr) {
                   &current->Data.Subject.Electronics.Degree    ,current->Data.Subject.Electronics.Rate,
                   &current->Data.Subject.Programming.Degree    ,current->Data.Subject.Programming.Rate,
                   &current->Data.Subject.Measurements.Degree   ,current->Data.Subject.Measurements.Rate,
-                  &current->Data.TotalDegree,current->Data.TotalGrade,&current->Data.GPA) > 0 &&  AddNewNode(ptr,current->Data));
+                  &current->Data.TotalDegree,current->Data.TotalGrade,&current->Data.GPA) > 0 &&  AddStudentNode(ptr,current->Data));
     fclose(file);
     free(current);
     current = NULL;
 
+}
+
+// Writing to Admin file
+
+void WriteToAdminFile(AdminNode* ptr) {
+    FILE* file = fopen("AdminDatabase.txt", "w");
+    if (file == NULL) { printf("Unable to write"); exit(1); }
+
+    AdminNode *current = NULL;
+    current = ptr;
+    while(current != NULL)
+    {
+        fprintf(file,"%ld, %s, %ld, %d, %s, %s, %s, %s,\n",
+                current->Data.ID,current->Data.NationalID,current->Data.PhoneNumber,
+                current->Data.Age,current->Data.Name,current->Data.Password,
+                current->Data.Gender,current->Data.Mail);
+
+        current = current->Link;
+    }
+    fclose(file);
+    free(current);
+    current = NULL;
+}
+
+// Read from Admin file
+
+void ReadAdminFile(AdminNode **ptr) {
+
+    FILE* file = fopen("AdminDatabase.txt", "r");
+    if (file == NULL) {
+        printf("\nUnable to open file\n");
+        exit(1);
+    }
+
+
+    AdminNode *current = NULL;
+    current = (AdminNode *)malloc(sizeof(AdminNode));
+    do{
+        printf("h");
+        current->Data.NationalID = malloc(MAX_STRING_LENGTH*sizeof(char));
+        current->Data.Name       = malloc(MAX_STRING_LENGTH*sizeof(char));
+        current->Data.Password   = malloc(MAX_STRING_LENGTH*sizeof(char));
+        current->Data.Mail       = malloc(MAX_STRING_LENGTH*sizeof(char));
+        current->Data.Gender     = malloc(7*sizeof(char));
+
+    }while(fscanf(file, "%ld, %49[^,], %ld, %d, %49[^,], %49[^,], %49[^,], %49[^,],\n",
+                  &current->Data.ID,current->Data.NationalID,&current->Data.PhoneNumber,
+                  &current->Data.Age,current->Data.Name,current->Data.Password,
+                  current->Data.Gender,current->Data.Mail) > 0 &&  AddAdminNode(ptr,current->Data));
+    fclose(file);
+    free(current);
+    current = NULL;
 }

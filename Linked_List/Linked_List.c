@@ -30,32 +30,82 @@ void PrintStudentInfo(StudentNode *head, long ID){
     }
 }
 
+// Print All Student Records
+
+void PrintAllRecords(StudentNode *head){
+    struct StudentNode *ptr = NULL;
+    ptr = head;
+    while(ptr != NULL)
+    {
+            printf("\nName : %s\t\tID : %ld \n",ptr->Data.Student.Name,ptr->Data.Student.ID);
+            printf("\nTotal Degree : %.2lf\tTotal Grade : %s     GPA : %.1lf \n",ptr->Data.TotalDegree,ptr->Data.TotalGrade,ptr->Data.GPA);
+            printf("______________________________________________________\n");
+            printf("\n    Subject      \t\tDegree\t\tGrade\n\n");
+            printf(" Digital_Circuits\t\t  %d \t\t  %s\n",ptr->Data.Subject.DigitalCircuits.Degree,ptr->Data.Subject.DigitalCircuits.Rate);
+            printf(" Control_System  \t\t  %d \t\t  %s\n",ptr->Data.Subject.ControlSystem.Degree  ,ptr->Data.Subject.ControlSystem.Rate);
+            printf(" Data_Structure  \t\t  %d \t\t  %s\n",ptr->Data.Subject.DataStructure.Degree  ,ptr->Data.Subject.DataStructure.Rate);
+            printf(" Electronics     \t\t  %d \t\t  %s\n",ptr->Data.Subject.Electronics.Degree    ,ptr->Data.Subject.Electronics.Rate);
+            printf(" Programming     \t\t  %d \t\t  %s\n",ptr->Data.Subject.Programming.Degree    ,ptr->Data.Subject.Programming.Rate);
+            printf(" Measurements    \t\t  %d \t\t  %s\n",ptr->Data.Subject.Measurements.Degree  ,ptr->Data.Subject.Measurements.Rate);
+            printf("______________________________________________________\n");
+        ptr = ptr->Link;
+    }
+}
+
+// Print Student information for Admin
+
+void PrintStudentInfo_ForAdmin(StudentNode *head, long ID){
+    struct StudentNode *ptr = NULL;
+    ptr = head;
+    while(ptr != NULL)
+    {
+        if(ptr->Data.Student.ID == ID){
+            printf("\nName : %s\t\tID : %ld \n",ptr->Data.Student.Name,ptr->Data.Student.ID);
+            printf("\nTotal Degree : %.2lf\tTotal Grade : %s     GPA : %.1lf \n",ptr->Data.TotalDegree,ptr->Data.TotalGrade,ptr->Data.GPA);
+            printf("______________________________________________________\n");
+            printf("\n    Subject      \t\tDegree\t\tGrade\n\n");
+            printf(" Digital_Circuits\t\t  %d \t\t  %s\n",ptr->Data.Subject.DigitalCircuits.Degree,ptr->Data.Subject.DigitalCircuits.Rate);
+            printf(" Control_System  \t\t  %d \t\t  %s\n",ptr->Data.Subject.ControlSystem.Degree  ,ptr->Data.Subject.ControlSystem.Rate);
+            printf(" Data_Structure  \t\t  %d \t\t  %s\n",ptr->Data.Subject.DataStructure.Degree  ,ptr->Data.Subject.DataStructure.Rate);
+            printf(" Electronics     \t\t  %d \t\t  %s\n",ptr->Data.Subject.Electronics.Degree    ,ptr->Data.Subject.Electronics.Rate);
+            printf(" Programming     \t\t  %d \t\t  %s\n",ptr->Data.Subject.Programming.Degree    ,ptr->Data.Subject.Programming.Rate);
+            printf(" Measurements    \t\t  %d \t\t  %s\n",ptr->Data.Subject.Measurements.Degree  ,ptr->Data.Subject.Measurements.Rate);
+            printf("______________________________________________________\n");
+        }
+        ptr = ptr->Link;
+    }
+}
 
 // Adding New Student
 
-StudentNode* AddNewStudent(StudentNode *ptr, StudentNode *head){
-    StudentNode *temp = NULL;
-    temp = malloc(sizeof(StudentNode));
+void AddNewStudent(StudentNode **Head){
+
+    StudentNode* temp = malloc(sizeof(StudentNode));
+    if (temp == NULL) {
+        exit(1);
+    }
+    temp->Link = NULL;
 
     temp->Data.Student.Name     = malloc(MAX_STRING_LENGTH*sizeof(char));
+
     // Ask Admin For Student Data
 
-    printf("\nEnter Student ID \"Only digits are allowed\" : ");
-    temp->Data.Student.ID = CheckExistingID(head);
-    printf("\nEnter Student National ID : ");
+    printf("\nEnter ID \"Only digits are allowed\" : ");
+    temp->Data.Student.ID = CheckExistingID(*Head);
+    printf("\nEnter National ID : ");
     temp->Data.Student.NationalID = ValidateNationalIDLength();
-    printf("\nEnter Student Phone Number : +20");
+    printf("\nEnter Phone Number : +20");
     temp->Data.Student.PhoneNumber = CheckPhoneNumber();
-    printf("\nEnter Student Name : ");
+    printf("\nEnter Name : ");
     while(getchar()!='\n');
     temp->Data.Student.Name = ValidName();
-    printf("\nEnter Student Password : ");
+    printf("\nEnter Password : ");
     temp->Data.Student.Password = CheckingPasswordStrength();
-    printf("\nEnter Student E-mail : ");
+    printf("\nEnter E-mail : ");
     temp->Data.Student.Mail = CheckMailValidation();
-    printf("\nEnter Student Gender : ");
+    printf("\nEnter Gender : ");
     temp->Data.Student.Gender = ValidateGender();
-    printf("\nEnter Student Age : ");
+    printf("\nEnter Age : ");
     temp->Data.Student.Age = ValidateStudentAge();
 
     // Ask Admin For Student_Degrees Data
@@ -94,17 +144,22 @@ StudentNode* AddNewStudent(StudentNode *ptr, StudentNode *head){
 
     temp->Data.GPA = CalcGPA(temp->Data.TotalDegree);
 
-
-    temp->Link = NULL;
-    ptr->Link = temp;
-    return temp;
+    if (*Head == NULL) {
+        *Head = temp;
+    }else {
+        StudentNode *curr = *Head;
+        while (curr->Link != NULL) {
+            curr = curr->Link;
+        }
+        curr->Link = temp;
+    }
 }
 
 
 
-// Add New Node In Linked List
+// Add New Node In Student Linked List
 
-int AddNewNode(StudentNode ** root, StudentInfo Data) {
+int AddStudentNode(StudentNode ** root, StudentInfo Data) {
     StudentNode* NewNode = malloc(sizeof(StudentNode));
     if (NewNode == NULL) {
         exit(1);
@@ -125,10 +180,32 @@ int AddNewNode(StudentNode ** root, StudentInfo Data) {
     return  1;
 }
 
+// Add New Node In Admin Linked List
+
+int AddAdminNode(AdminNode ** root, UserInfo Data) {
+    AdminNode * NewNode = malloc(sizeof(AdminNode));
+    if (NewNode == NULL) {
+        exit(1);
+    }
+    NewNode->Link = NULL;
+    NewNode->Data = Data;
+
+    if (*root == NULL) {
+        *root = NewNode;
+        return 1;
+    }
+
+    AdminNode *curr = *root;
+    while (curr->Link != NULL) {
+        curr = curr->Link;
+    }
+    curr->Link = NewNode;
+    return  1;
+}
+
 // Modify Student Degree
 
-void ModifyStudentDegree(struct StudentNode *head, long ID)
-{
+void ModifyStudentGrade(StudentNode *head, long ID){
     int Choice1,Choice2, NewDegree;
     struct StudentNode *ptr = NULL;
     do
@@ -180,8 +257,7 @@ void ModifyStudentDegree(struct StudentNode *head, long ID)
 // Delete Student
 
 
-void DelStudent(StudentNode** head, long ID)
-{
+void DeleteStudent(StudentNode** head, long ID){
 
     // find position
 
@@ -217,12 +293,24 @@ void DelStudent(StudentNode** head, long ID)
     }
 }
 
-// Deallocate Node
+// Deallocate Student Linked List
 
-void deallocate(StudentNode ** root) {
+void DeallocateStudent(StudentNode ** root) {
     StudentNode * curr = *root;
     while (curr != NULL) {
         StudentNode * aux = curr;
+        curr = curr->Link;
+        free(aux);
+    }
+    *root = NULL;
+}
+
+// Deallocate Admin Linked List
+
+void DeallocateAdmin(AdminNode ** root) {
+    AdminNode * curr = *root;
+    while (curr != NULL) {
+        AdminNode * aux = curr;
         curr = curr->Link;
         free(aux);
     }

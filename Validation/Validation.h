@@ -5,6 +5,9 @@
 #include "../Libraries/Libraries.h"
 #include "../Struct/Struct.h"
 #include "../Linked_List/Linked_List.h"
+#include "../Program/Program.h"
+
+#define MAX_STRING_LENGTH 50
 
 long ValidateIDLength();
 
@@ -46,9 +49,21 @@ int ChoiceAnotherSubjectValidate();
 
 bool CheckStudentData(StudentNode *CurrentStudent,long ID);
 
+bool CheckAdminData(AdminNode *Head,long ID);
+
 long CheckStudentID(StudentNode *Head);
 
 bool CheckStudentPassword(StudentNode *CurrentStudent, long ID);
+
+long CheckAdminID(AdminNode *Head);
+
+bool CheckAdminPassword(AdminNode *Head, long ID);
+
+int StudentAffairsValidate();
+
+int EditAdminInfoValidate();
+
+
 
 
 #endif

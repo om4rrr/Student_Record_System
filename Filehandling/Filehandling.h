@@ -9,10 +9,13 @@
 
 #define MAX_STRING_LENGTH 50
 
-void WriteToFile(StudentNode* ptr);
+void WriteToStudentFile(StudentNode* ptr);
 
-void ReadFromFile(StudentNode **ptr);
+void ReadStudentFile(StudentNode **ptr);
 
+void WriteToAdminFile(AdminNode* ptr);
+
+void ReadAdminFile(AdminNode **ptr);
 
 
 #endif

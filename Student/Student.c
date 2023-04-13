@@ -1,9 +1,6 @@
 #include "Student.h"
-#include "../Libraries/Libraries.h"
-#include "../Struct/Struct.h"
-#include "../Validation/Validation.h"
-#include "../Program/Program.h"
-#include "../Linked_List/Linked_List.h"
+
+
 
 
 // Edit Student Name
@@ -45,8 +42,6 @@ char *EditStudentPassword(StudentNode *Head,long ID){
     }
     return "\n\"Password Edited Successfully\"\n\n";
 }
-
-
 
 // Choose Student Features
 

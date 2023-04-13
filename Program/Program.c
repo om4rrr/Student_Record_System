@@ -9,7 +9,7 @@
 double CalcTotalDegree(StudentNode *ptr1){
     StudentNode *ptr = NULL;
     ptr = ptr1;
-    return ptr->Data.Subject.DigitalCircuits.Degree+ ptr->Data.Subject.ControlSystem.Degree
+    return ptr->Data.Subject.DigitalCircuits.Degree + ptr->Data.Subject.ControlSystem.Degree
            + ptr->Data.Subject.Programming.Degree   + ptr->Data.Subject.Electronics.Degree
            + ptr->Data.Subject.DataStructure.Degree + ptr->Data.Subject.Measurements.Degree;
 
@@ -80,24 +80,6 @@ size_t Strlen(const char *s){
 
 // Take string from user
 
-//char *SetString(){
-//    char *str = NULL, ch;
-//    int i = 0;
-//    str = (char*)malloc(2*sizeof(short ));
-//
-//    while(ch = getc(stdin),ch !='\n')
-//    {
-//        str[i] = ch;
-//        str[i+1] = '\0';
-//        i++;
-//        str = (char *)realloc(str,i*sizeof(int));
-//    }
-//    return str;
-//}
-
-
-//
-
 
 char* SetString(){
     char *str = (char *)calloc(1,sizeof(char));
@@ -105,6 +87,7 @@ char* SetString(){
     *str = '\0';
     char ch;
     ch = getchar();
+    _putch('*');
     int cnt = 1;
     while(ch != '\n'){
         if(cnt == len)
@@ -122,6 +105,48 @@ char* SetString(){
     return str;
 }
 
+// Take Password from user encrypted
+
+char* SetPassword(){
+    char *str = (char *)calloc(1,sizeof(char));
+    int len = 1;
+    *str = '\0';
+    char ch;
+    ch =_getch();
+    printf("*");
+    fflush(stdout);
+    int cnt = 1;
+    while(ch != 13){
+        if(cnt == len)
+        {
+            str = (char *)realloc(str, (2 * len) * sizeof(char));
+            len = 2 * len;
+        }
+        *(str + cnt - 1) = ch;
+        *(str + cnt) = '\0';
+        cnt++;
+        ch = _getch();
+        _putch('*');
+    }
+    fflush(stdin);
+    if(len == 1 ) return SetPassword();
+    return str;
+}
+
+
+// convert String to int
+
+int StringToInt(char* StringNum){
+    if(Strlen(StringNum) > 10) return -1;
+    int num = 0;
+    for(int i = 0; i < strlen(StringNum); i++)
+    {
+        if(!isdigit(StringNum[i])) return -1;
+        num *= 10;
+        num += StringNum[i] - '0';
+    }
+    return num;
+}
 
 // Print Supporting messages
 
@@ -142,7 +167,7 @@ void PrintSupportingMessage(char *str){
 
 // Store Correct Password
 
-char *StoreCorrectPassword(StudentNode *ptr,long ID){
+char *StoreStudentCorrectPassword(StudentNode *ptr,long ID){
 
     StudentNode *Current=NULL;
     Current = ptr;
@@ -161,7 +186,7 @@ char *StoreCorrectPassword(StudentNode *ptr,long ID){
 
 // Store New Password
 
-void StoreNewPassword(StudentNode *Head,long ID, char *Password){
+void StoreStudentNewPassword(StudentNode *Head,long ID, char *Password){
 
     StudentNode *Current=NULL;
     Current = Head;
@@ -196,7 +221,7 @@ char *StudentName(StudentNode *ptr,long ID){
 
 // Store Student National ID
 
-char *StoreNationalID(StudentNode *ptr,long ID){
+char *StoreStudentNationalID(StudentNode *ptr,long ID){
 
     StudentNode *Current=NULL;
     Current = ptr;
@@ -215,7 +240,7 @@ char *StoreNationalID(StudentNode *ptr,long ID){
 
 // Store Student Phone Number
 
-long StorePhoneNumber(StudentNode *ptr,long ID){
+long StoreStudentPhoneNumber(StudentNode *ptr,long ID){
 
     StudentNode *Current=NULL;
     Current = ptr;
@@ -271,6 +296,128 @@ char *RandomString(char *str, int Num){
     return str1;
 }
 
+/////////////////////////////////
 
 
+// Store Correct Password
 
+char *StoreAdminCorrectPassword(AdminNode *ptr,long ID){
+
+    AdminNode *Current=NULL;
+    Current = ptr;
+
+    char *Password = NULL;
+    Password = (char *)malloc(MAX_STRING_LENGTH*sizeof(char));
+    while(Current != NULL) {
+        if (ID == Current->Data.ID) {
+            Password = Current->Data.Password;
+            break;
+        }
+        Current = Current->Link;
+    }
+    return Password;
+}
+
+// Store New Password
+
+void StoreAdminNewPassword(AdminNode *Head,long ID, char *Password){
+
+    AdminNode *Current=NULL;
+    Current = Head;
+    while(Current != NULL) {
+        if (ID == Current->Data.ID) {
+            Current->Data.Password = Password;
+            break;
+        }
+        Current = Current->Link;
+    }
+}
+
+// Student Name
+
+char *AdminName(AdminNode *ptr,long ID){
+
+    AdminNode *Current=NULL;
+    Current = ptr;
+
+    char *Name = NULL;
+    Name = (char *)malloc(MAX_STRING_LENGTH*sizeof(char));
+    while(Current != NULL)
+    {
+        if(ID == Current->Data.ID)
+        {
+            Name = Current->Data.Name;
+        }
+        Current = Current->Link;
+    }
+    return Name;
+}
+
+// Store Student National ID
+
+char *StoreAdminNationalID(AdminNode *ptr,long ID){
+
+    AdminNode *Current=NULL;
+    Current = ptr;
+
+    char *NationalID;
+    while(Current != NULL)
+    {
+        if(ID == Current->Data.ID)
+        {
+            NationalID = Current->Data.NationalID;
+        }
+        Current = Current->Link;
+    }
+    return NationalID;
+}
+
+// Store Student Phone Number
+
+long StoreAdminPhoneNumber(AdminNode *ptr,long ID){
+
+    AdminNode *Current=NULL;
+    Current = ptr;
+
+    long phoneNumber;
+    while(Current != NULL)
+    {
+        if(ID == Current->Data.ID)
+        {
+            phoneNumber = Current->Data.PhoneNumber;
+        }
+        Current = Current->Link;
+    }
+    return phoneNumber;
+}
+
+// Store Student E-Mail
+
+char *StoreAdminMail(AdminNode *ptr,long ID){
+
+    AdminNode *Current=NULL;
+    Current = ptr;
+
+    char *studentMail = NULL;
+    studentMail = (char *)malloc(MAX_STRING_LENGTH*sizeof(char));
+    while(Current != NULL)
+    {
+        if(ID == Current->Data.ID)
+        {
+            studentMail = Current->Data.Mail;
+        }
+        Current = Current->Link;
+    }
+    return studentMail;
+}
+
+
+///////////
+
+void gotoxy(int x,int y)
+{
+    COORD c;
+    c.X=x;
+    c.Y=y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),c);
+}

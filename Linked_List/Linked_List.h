@@ -5,28 +5,35 @@
 #include "../Struct/Struct.h"
 
 typedef struct StudentNode{
-    struct StudentInfo Data;
+    StudentInfo Data;
     struct StudentNode* Link;
 }StudentNode;
 
 typedef struct AdminNode{
-    struct UserInfo Data;
-    struct UserInfo* Link;
+    UserInfo Data;
+    struct AdminNode* Link;
 }AdminNode;
 
 
 void PrintStudentInfo(StudentNode *head, long ID);
 
-StudentNode* AddNewStudent(StudentNode *ptr, StudentNode *head);
+void PrintStudentInfo_ForAdmin(StudentNode *head, long ID);
 
+void PrintAllRecords(StudentNode *head);
 
-int AddNewNode(StudentNode ** root, StudentInfo Data);
+void AddNewStudent(StudentNode **Head);
 
-void ModifyStudentDegree(struct StudentNode *head, long ID);
+int AddStudentNode(StudentNode ** root, StudentInfo Data);
 
-void DelStudent(StudentNode** head, long ID);
-void deallocate(StudentNode ** root);
+int AddAdminNode(AdminNode ** root, UserInfo Data);
 
+void ModifyStudentGrade(StudentNode *head, long ID);
+
+void DeleteStudent(StudentNode** head, long ID);
+
+void DeallocateStudent(StudentNode ** root);
+
+void DeallocateAdmin(AdminNode ** root);
 
 
 #endif

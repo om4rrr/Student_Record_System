@@ -4,6 +4,9 @@
 #include "../Libraries/Libraries.h"
 #include "../Struct/Struct.h"
 #include "../Linked_List/Linked_List.h"
+#include "../Validation/Validation.h"
+#include "../Program/Program.h"
+
 #define MAX_STRING_LENGTH 50
 
 
