@@ -406,7 +406,7 @@ bool CheckStudentPassword(StudentNode *Head, long ID){
     char *CorrectPassword = NULL, *Password = NULL;
     CorrectPassword = StoreStudentCorrectPassword(Head,ID);
 
-    int cnt = 0, var = 0; bool f = false;
+    int cnt = 3, var = 0; bool f = false;
     do{
         if(f) { var = ChoiceValidation();}
         if(var == 1)
@@ -420,16 +420,16 @@ bool CheckStudentPassword(StudentNode *Head, long ID){
                 WriteToStudentFile(Head);
                 return true; // go to next background (Student's features)
             }else{
-                printf("\nSorry, You entered wrong Information three times, Try later...\n");
+                printf("\n\nSorry, You entered wrong Information three times, Try later...\n");
                 return false; // return to previous background (Admin or Student)
             }
         }
         else
-        {
-            if(cnt > 2) {printf("\nSorry, You entered wrong Password three times, Try later...\n"); return false;}
+        {   if(cnt == 2 || cnt == 1) printf("\n\nYou have %d more tries",cnt);
+            if(cnt < 1) {printf("\n\nSorry, You entered wrong Password three times, Try later...\n"); return false;}
             if(f)printf("\n\nEnter your password : ");
             Password = SetPassword();
-            cnt++;
+            cnt--;
         }
     }while(strcmp(CorrectPassword,Password) && printf("\nWrong Password, \"If you forget your "
                                                       "password, Enter (1)  ,  if not and want to ""try again... Enter (2)\"\n\nYour Choice : ") && (f = true));
@@ -528,7 +528,7 @@ bool CheckAdminPassword(AdminNode *Head, long ID){
     CorrectPassword = StoreAdminCorrectPassword(Head,ID);
 
 
-    int cnt = 0, var = 0; bool f = false;
+    int cnt = 3, var = 0; bool f = false;
     do{
         if(f) { var = ChoiceValidation();}
         if(var == 1)
@@ -548,10 +548,11 @@ bool CheckAdminPassword(AdminNode *Head, long ID){
         }
         else
         {
-            if(cnt > 2) {printf("Sorry, You entered wrong Password three times, Try later..."); return false;}
+            if(cnt==2 || cnt==1) printf("\n\nYou have %d more tries",cnt);
+            if(cnt < 1) {printf("\n\nSorry, You entered wrong Password three times, Try later...\n"); return false;}
             if(f)printf("\n\nEnter your password : ");
             Password = SetPassword();
-            cnt++;
+            cnt--;
         }
     }while(strcmp(CorrectPassword,Password) && printf("\nWrong Password, \"If you forget your "
                                                       "password, Enter (1)  ,  if not and want to "

@@ -12,7 +12,9 @@ double CalcTotalDegree(StudentNode *ptr1){
 
 }
 
+
 // We Calculate Student Total Grade.
+
 
 char *CalcTotalGrade(double TotalDegree){
     if(TotalDegree >= 727.5 &&  TotalDegree <= 750)         return "A+";
