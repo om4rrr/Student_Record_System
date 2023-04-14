@@ -137,7 +137,6 @@ char* ValidName(){
             else if(str[i] == ' ') c++;
             else {check = false; break; }
         }
-        printf("\n%d",c);
     }while(((c < 2)  || !check) && printf("\nInvalid Name, Please enter first, middle, and last name correctly\nEnter Name : "));
     return str;
 }
@@ -332,12 +331,12 @@ bool CheckStudentData(StudentNode *Head,long ID){
     CorrectPhoneNumber = StoreStudentPhoneNumber(Head,ID);
     char *temp;
     cnt = 0;
-    printf("\nEnter your Phone Number : ");
+    printf("\nEnter your Phone Number : +20");
     do{
         temp = SetString();
         PhoneNumber = StringToInt(temp);
         cnt++;
-    }while(CorrectPhoneNumber != PhoneNumber && cnt < 3 && printf("\nWrong Phone Number, Try again...\nEnter your Phone Number : "));
+    }while(CorrectPhoneNumber != PhoneNumber && cnt < 3 && printf("\nWrong Phone Number, Try again...\nEnter your Phone Number : +20"));
     if(cnt >= 3) return false;
 
     // Take E-mail
@@ -378,7 +377,7 @@ long CheckStudentID(StudentNode *Head){
             Current = Current->Link;
         }
         cnt++;
-    }while(flag && cnt < 10 && printf("\nWrong ID, Try again..\nEnter your ID : "));
+    }while(flag && cnt < 10 && printf("\nWrong ID, Try again..\nEnter ID : "));
 
     if(cnt >= 10) {printf("\nSorry, You entered wrong ID many times, try later...\n") ; return 0;}
 
@@ -415,7 +414,7 @@ bool CheckStudentPassword(StudentNode *Head, long ID){
             {
                 char *str = NULL;
                 str = CheckingRandomPasswordStrength(); // calling CheckingRandomPasswordStrength --> calling Generating RandomPassword
-                printf("\nYour New Password is \"%s\"",str);
+                printf("\nYour New Password is \"%s\"\n",str);
                 StoreStudentNewPassword(Head,ID,str);
                 WriteToStudentFile(Head);
                 return true; // go to next background (Student's features)
@@ -431,7 +430,7 @@ bool CheckStudentPassword(StudentNode *Head, long ID){
             Password = SetPassword();
             cnt++;
         }
-    }while(strcmp(CorrectPassword,Password) && printf("\nWrong Password, \"If you forget your"
+    }while(strcmp(CorrectPassword,Password) && printf("\nWrong Password, \"If you forget your "
                                                       "password, Enter (1)  ,  if not and want to ""try again... Enter (2)\"\nYour Choice : ") && (f = true));
     return true;
 }
@@ -464,12 +463,12 @@ bool CheckAdminData(AdminNode *Head,long ID){
     CorrectPhoneNumber = StoreAdminPhoneNumber(Head,ID);
     char *temp;
     cnt = 0;
-    printf("\nEnter your Phone Number : ");
+    printf("\nEnter your Phone Number : +20");
     do{
         temp = SetString();
         PhoneNumber = StringToInt(temp);
         cnt++;
-    }while(CorrectPhoneNumber != PhoneNumber && cnt < 3 && printf("\nWrong Phone Number, Try again...\nEnter your Phone Number : "));
+    }while(CorrectPhoneNumber != PhoneNumber && cnt < 3 && printf("\nWrong Phone Number, Try again...\nEnter your Phone Number : +20"));
     if(cnt >= 3) { return false;}
 
     // Take E-mail
@@ -537,7 +536,7 @@ bool CheckAdminPassword(AdminNode *Head, long ID){
             {
                 char *str = NULL;
                 str = CheckingRandomPasswordStrength(); // calling CheckingRandomPasswordStrength --> calling Generating RandomPassword
-                printf("\nYour New Password is \"%s\"",str);
+                printf("\nYour New Password is \"%s\"\n",str);
                 StoreAdminNewPassword(Head,ID,str);
                 WriteToAdminFile(Head);
                 return true; // go to next background (Student's features)
@@ -553,7 +552,7 @@ bool CheckAdminPassword(AdminNode *Head, long ID){
             Password = SetPassword();
             cnt++;
         }
-    }while(strcmp(CorrectPassword,Password) && printf("\nWrong Password, \"If you forget your"
+    }while(strcmp(CorrectPassword,Password) && printf("\nWrong Password, \"If you forget your "
                                                       "password, Enter (1)  ,  if not and want to "
                                                       "try again... Enter (2)\"\nYour Choice : ") && (f = true));
     return true;

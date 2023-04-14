@@ -1,5 +1,33 @@
 #include "Student.h"
 
+
+
+// Print Student Information
+
+void PrintStudentInfo(StudentNode *head, long ID){
+    struct StudentNode *ptr = NULL;
+    ptr = head;
+    while(ptr != NULL)
+    {
+        if(ptr->Data.Student.ID == ID){
+            printf("\nName : %s\t\tID : %ld \n",ptr->Data.Student.Name,ptr->Data.Student.ID);
+            printf("\nTotal Degree : %.2lf\tTotal Grade : %s     GPA : %.1lf \n",ptr->Data.TotalDegree,ptr->Data.TotalGrade,ptr->Data.GPA);
+            printf("______________________________________________________\n");
+            printf("\n    Subject      \t\tDegree\t\tGrade\n\n");
+            printf(" Digital_Circuits\t\t  %d \t\t  %s\n",ptr->Data.Subject.DigitalCircuits.Degree,ptr->Data.Subject.DigitalCircuits.Rate);
+            printf(" Control_System  \t\t  %d \t\t  %s\n",ptr->Data.Subject.ControlSystem.Degree  ,ptr->Data.Subject.ControlSystem.Rate);
+            printf(" Data_Structure  \t\t  %d \t\t  %s\n",ptr->Data.Subject.DataStructure.Degree  ,ptr->Data.Subject.DataStructure.Rate);
+            printf(" Electronics     \t\t  %d \t\t  %s\n",ptr->Data.Subject.Electronics.Degree    ,ptr->Data.Subject.Electronics.Rate);
+            printf(" Programming     \t\t  %d \t\t  %s\n",ptr->Data.Subject.Programming.Degree    ,ptr->Data.Subject.Programming.Rate);
+            printf(" Measurements    \t\t  %d \t\t  %s\n",ptr->Data.Subject.Measurements.Degree  ,ptr->Data.Subject.Measurements.Rate);
+            printf("______________________________________________________\n");
+            PrintSupportingMessage(ptr->Data.TotalGrade);
+        }
+        ptr = ptr->Link;
+    }
+}
+
+
 // Edit Student Name
 
 char *EditStudentName(StudentNode *Head,long ID){

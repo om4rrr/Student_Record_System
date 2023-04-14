@@ -108,19 +108,15 @@ char* SetString(){
 
 
 char* SetPassword(){
-    char *str = (char *)calloc(1,sizeof(char));
-    int len = 1;
-    *str = '\0';
-    char ch;
-    ch =(char)_getch();
-    printf("*");
-    int cnt = 1;
-    while(ch != 13){
-        if(cnt == len)
-        {
-            str = (char *)realloc(str, (2 * len) * sizeof(char));
-            len = 2 * len;
-        }
+
+    char *password = NULL, ch ;
+    password = (char *)malloc(120 * sizeof(char));
+
+    int cnt = 0;
+
+    while((ch = getch()) != 13){
+
+        if(cnt < 0) cnt = 0;
         if(ch == 8){
             putch('\b');
             putch('\0');
@@ -128,15 +124,13 @@ char* SetPassword(){
             cnt--;
             continue;
         }
-        *(str + cnt - 1) = ch;
-        *(str + cnt) = '\0';
-        cnt++;
-        ch = (char)_getch();
-        printf("*");
+        password[cnt++] = ch;
+        putch('*');
+
     }
-    fflush(stdin);
-    if(len == 1 ) return SetPassword();
-    return str;
+    password[cnt] = '\0';
+
+    return password;
 }
 
 

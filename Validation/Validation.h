@@ -1,12 +1,11 @@
 #ifndef VALIDATION_H
 #define VALIDATION_H
 
-#include "../../Linked_List/Linked_List.h"
-#include "../../Libraries/Libraries.h"
-#include "../../Linked_List/Struct.h"
-#include "../../Linked_List/Linked_List.h"
-#include "../Program.h"
-#include "../../Filehandling/Filehandling.h"
+#include "../Libraries/Libraries.h"
+#include "../Linked_List/Struct.h"
+#include "../Linked_List/Linked_List.h"
+#include "../Program/Program.h"
+#include "../Filehandling/Filehandling.h"
 
 #define MAX_STRING_LENGTH 50
 
