@@ -113,7 +113,6 @@ void ReadAdminFile(AdminNode **ptr) {
     AdminNode *current = NULL;
     current = (AdminNode *)malloc(sizeof(AdminNode));
     do{
-        printf("h");
         current->Data.NationalID = malloc(MAX_STRING_LENGTH*sizeof(char));
         current->Data.Name       = malloc(MAX_STRING_LENGTH*sizeof(char));
         current->Data.Password   = malloc(MAX_STRING_LENGTH*sizeof(char));

@@ -87,7 +87,6 @@ char* SetString(){
     *str = '\0';
     char ch;
     ch = getchar();
-    _putch('*');
     int cnt = 1;
     while(ch != '\n'){
         if(cnt == len)
@@ -105,33 +104,34 @@ char* SetString(){
     return str;
 }
 
-// Take Password from user encrypted
 
-char* SetPassword(){
-    char *str = (char *)calloc(1,sizeof(char));
-    int len = 1;
-    *str = '\0';
-    char ch;
-    ch =_getch();
-    printf("*");
-    fflush(stdout);
-    int cnt = 1;
-    while(ch != 13){
-        if(cnt == len)
-        {
-            str = (char *)realloc(str, (2 * len) * sizeof(char));
-            len = 2 * len;
-        }
-        *(str + cnt - 1) = ch;
-        *(str + cnt) = '\0';
-        cnt++;
-        ch = _getch();
-        _putch('*');
-    }
-    fflush(stdin);
-    if(len == 1 ) return SetPassword();
-    return str;
-}
+//// Take Password from user encrypted
+//
+//char* SetPassword(){
+//    char *str = (char *)calloc(1,sizeof(char));
+//    int len = 1;
+//    *str = '\0';
+//    char ch;
+//    ch =_getch();
+//    printf("*");
+//    fflush(stdout);
+//    int cnt = 1;
+//    while(ch != 13){
+//        if(cnt == len)
+//        {
+//            str = (char *)realloc(str, (2 * len) * sizeof(char));
+//            len = 2 * len;
+//        }
+//        *(str + cnt - 1) = ch;
+//        *(str + cnt) = '\0';
+//        cnt++;
+//        ch = _getch();
+//        _putch('*');
+//    }
+//    fflush(stdin);
+//    if(len == 1 ) return SetPassword();
+//    return str;
+//}
 
 
 // convert String to int
@@ -411,13 +411,3 @@ char *StoreAdminMail(AdminNode *ptr,long ID){
     return studentMail;
 }
 
-
-///////////
-
-void gotoxy(int x,int y)
-{
-    COORD c;
-    c.X=x;
-    c.Y=y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),c);
-}

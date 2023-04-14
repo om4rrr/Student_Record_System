@@ -13,7 +13,7 @@ long ValidateIDLength();
 
 char *ValidateNationalIDLength();
 
-long ValidatePhoneNumberLength();
+char *ValidatePhoneNumberLength();
 
 long CheckPhoneNumber();
 

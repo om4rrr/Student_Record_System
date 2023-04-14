@@ -29,26 +29,19 @@ char *ValidateNationalIDLength(){
     do{
         NationalID = SetString();
 
-    } while (Strlen(NationalID)!=15 && printf("\nID must consist of 14 digits, Try again..\nEnter Student National ID : "));
+    } while (Strlen(NationalID)  != 14 && printf("\nID must consist of 14 digits, Try again..\nEnter Student National ID : "));
     return NationalID;
 }
 
 // Validate Student Phone number Length
 
-long ValidatePhoneNumberLength(){
-    int count;
-    long PhoneNumber, temp;
-    char *tmp;
+char *ValidatePhoneNumberLength(){
+
+    long PhoneNumber;
+    char *temp;
     do{
-        count = 0;
-        tmp = SetString();
-        PhoneNumber = StringToInt(tmp);
-        temp = PhoneNumber;
-        while (PhoneNumber != 0) {
-            count++;
-            PhoneNumber /= 10;
-        }
-    } while (count!=10 && printf("\nPhone Number must consist of 11 digits, Try again..\n"
+        temp = SetString();
+    } while (Strlen(temp) != 10 && printf("\nPhone Number must consist of 11 digits, Try again..\n"
                                         "Enter Student Phone Number : +20"));
     return temp;
 }
@@ -58,14 +51,12 @@ long ValidatePhoneNumberLength(){
 long CheckPhoneNumber(){
 
     long PhoneNumber;
-    int var1,var2;
+    char *temp;
     do{
-        PhoneNumber = ValidatePhoneNumberLength();
-        var1 = PhoneNumber%(long)1e10;
-        var2 = PhoneNumber%(long)1e19;
-    } while ((var1 != 1 &&(var2 != 0 || var2 != 1 ||  var2 != 2 ||  var2 != 5))
+        temp = ValidatePhoneNumberLength();
+    } while ((temp[0] != '1' &&(temp[1] != '0' || temp[1] != '1' ||  temp[1] != '2' ||  temp[1] != '5'))
              && printf("\nWrong Phone Number, Try again..\nEnter Student Phone Number : +20"));
-
+    return StringToInt(temp);
 }
 
 
@@ -141,9 +132,8 @@ char* ValidName(){
     bool check;
     int c;
     char* str = NULL;
-    str = (char *) malloc(MAX_STRING_LENGTH*sizeof(char));
     do{
-        check=true;
+        check = true;
         c = 0;
         str = SetString();
         for(int i = 0; i < Strlen(str); i++)
@@ -152,6 +142,7 @@ char* ValidName(){
             else if(str[i] == ' ') c++;
             else {check = false; break; }
         }
+        printf("\n%d",c);
     }while(((c < 2)  || !check) && printf("\nInvalid Name, Please enter first, middle, and last name correctly\nEnter The Name : "));
     return str;
 }
@@ -377,7 +368,7 @@ long CheckStudentID(StudentNode *Head){
     long ID;
     int cnt = 0;
     do{
-        if(cnt >= 9) printf("Sorry, You entered wrong ID many times") ;
+        if(cnt >= 9) {printf("\nSorry, You entered wrong ID many times") ; return 0;}
         Current = Head;
         flag = true;
         ID = ValidateIDLength();
@@ -390,6 +381,7 @@ long CheckStudentID(StudentNode *Head){
             Current = Current->Link;
         }
         cnt++;
+        if(cnt > 10) {printf("\n\"Sorry, You entered wrong ID many times\"") ; return 0;}
     }while(flag && printf("\nWrong ID, Try again..\nEnter your ID : "));
 
     return ID;
@@ -543,8 +535,8 @@ bool CheckAdminPassword(AdminNode *Head, long ID){
             Password = SetString();
             cnt++;
         }
-    }while(strcmp(CorrectPassword,Password) && printf("\nWrong Password, \"if you forget your"
-                                                      "password... Enter -1- , if not and want to ""try again... Enter -2-\"\nEnter Number : ") && (f = true));
+    }while(strcmp(CorrectPassword,Password) && printf("\nWrong Password, \"if you forget your "
+                                                      "password... Enter 1 , if not and want to try again... Enter 2\"\nEnter Number : ") && (f = true));
     return true;
 }
 

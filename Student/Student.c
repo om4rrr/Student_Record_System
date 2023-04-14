@@ -71,7 +71,9 @@ void StudentMode(StudentNode *Head)
 {
     printf("\nEnter your ID : ");
     long ID = CheckStudentID(Head);
-    printf("\nEnter your Password : ");
-    if (CheckStudentPassword(Head, ID)) ChooseStudentFeatures(Head,ID);
+    if(ID > 0) {
+        printf("\nEnter your Password : ");
+        if (CheckStudentPassword(Head, ID)) ChooseStudentFeatures(Head, ID);
+    }
 }
 
