@@ -2,7 +2,12 @@
 #define LINKED_LIST_H
 
 #include "../Libraries/Libraries.h"
-#include "../Struct/Struct.h"
+#include "Struct.h"
+#include "../Program/Validation/Validation.h"
+
+#define MAX_STRING_LENGTH 50
+
+
 
 typedef struct StudentNode{
     StudentInfo Data;
@@ -21,19 +26,19 @@ void PrintStudentInfo_ForAdmin(StudentNode *head, long ID);
 
 void PrintAllRecords(StudentNode *head);
 
-void AddNewStudent(StudentNode **Head);
+char *AddNewStudent(StudentNode **Head);
 
-int AddStudentNode(StudentNode ** root, StudentInfo Data);
+int AddStudentNode(StudentNode ** Head, StudentInfo Data);
 
-int AddAdminNode(AdminNode ** root, UserInfo Data);
+int AddAdminNode(AdminNode ** Head, UserInfo Data);
 
-void ModifyStudentGrade(StudentNode *head, long ID);
+char *ModifyStudentGrade(StudentNode *head, long ID);
 
-void DeleteStudent(StudentNode** head, long ID);
+char *DeleteStudent(StudentNode** head, long ID);
 
-void DeallocateStudent(StudentNode ** root);
+void DeallocateStudent(StudentNode ** Head);
 
-void DeallocateAdmin(AdminNode ** root);
+void DeallocateAdmin(AdminNode ** Head);
 
 
 #endif

@@ -1,14 +1,14 @@
 #ifndef APP_H
 #define APP_H
 
-#include "../Libraries/Libraries.h"
-#include "../Struct/Struct.h"
 #include "../Linked_List/Linked_List.h"
-#include "../Validation/Validation.h"
+#include "../Libraries/Libraries.h"
+#include "../Linked_List/Struct.h"
+#include "../Program/Validation/Validation.h"
 #include "../Program/Program.h"
-#include "../Admin/Admin.h"
-#include "../Student/Student.h"
-#include "App.h"
+#include "../User/Admin/Admin.h"
+#include "../User/Student/Student.h"
+#include "../Filehandling/Filehandling.h"
 
 void StartApp(StudentNode **StudentHead, AdminNode *AdminHead);
 

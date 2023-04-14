@@ -1,11 +1,13 @@
 #ifndef ADMIN_H
 #define ADMIN_H
 
-#include "../Libraries/Libraries.h"
-#include "../Struct/Struct.h"
-#include "../Linked_List/Linked_List.h"
-#include "../Validation/Validation.h"
-#include "../Program/Program.h"
+#include "../../Linked_List/Linked_List.h"
+#include "../../Libraries/Libraries.h"
+#include "../../Linked_List/Struct.h"
+#include "../../Program/Validation/Validation.h"
+#include "../../Program/Program.h"
+#include "../../Filehandling/Filehandling.h"
+
 
 char *EditAdminName(AdminNode *Head,long ID);
 

@@ -67,17 +67,17 @@ build CMakeFiles/Student_Record_System.dir/Filehandling/Filehandling.c.obj: C_CO
   OBJECT_DIR = CMakeFiles\Student_Record_System.dir
   OBJECT_FILE_DIR = CMakeFiles\Student_Record_System.dir\Filehandling
 
-build CMakeFiles/Student_Record_System.dir/Validation/Validation.c.obj: C_COMPILER__Student_Record_System_Debug D$:/Student_Record_System/Validation/Validation.c || cmake_object_order_depends_target_Student_Record_System
-  DEP_FILE = CMakeFiles\Student_Record_System.dir\Validation\Validation.c.obj.d
+build CMakeFiles/Student_Record_System.dir/Program/Validation/Validation.c.obj: C_COMPILER__Student_Record_System_Debug D$:/Student_Record_System/Program/Validation/Validation.c || cmake_object_order_depends_target_Student_Record_System
+  DEP_FILE = CMakeFiles\Student_Record_System.dir\Program\Validation\Validation.c.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu99
   OBJECT_DIR = CMakeFiles\Student_Record_System.dir
-  OBJECT_FILE_DIR = CMakeFiles\Student_Record_System.dir\Validation
+  OBJECT_FILE_DIR = CMakeFiles\Student_Record_System.dir\Program\Validation
 
-build CMakeFiles/Student_Record_System.dir/Student/Student.c.obj: C_COMPILER__Student_Record_System_Debug D$:/Student_Record_System/Student/Student.c || cmake_object_order_depends_target_Student_Record_System
-  DEP_FILE = CMakeFiles\Student_Record_System.dir\Student\Student.c.obj.d
+build CMakeFiles/Student_Record_System.dir/User/Student/Student.c.obj: C_COMPILER__Student_Record_System_Debug D$:/Student_Record_System/User/Student/Student.c || cmake_object_order_depends_target_Student_Record_System
+  DEP_FILE = CMakeFiles\Student_Record_System.dir\User\Student\Student.c.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu99
   OBJECT_DIR = CMakeFiles\Student_Record_System.dir
-  OBJECT_FILE_DIR = CMakeFiles\Student_Record_System.dir\Student
+  OBJECT_FILE_DIR = CMakeFiles\Student_Record_System.dir\User\Student
 
 build CMakeFiles/Student_Record_System.dir/Linked_List/Linked_List.c.obj: C_COMPILER__Student_Record_System_Debug D$:/Student_Record_System/Linked_List/Linked_List.c || cmake_object_order_depends_target_Student_Record_System
   DEP_FILE = CMakeFiles\Student_Record_System.dir\Linked_List\Linked_List.c.obj.d
@@ -85,11 +85,11 @@ build CMakeFiles/Student_Record_System.dir/Linked_List/Linked_List.c.obj: C_COMP
   OBJECT_DIR = CMakeFiles\Student_Record_System.dir
   OBJECT_FILE_DIR = CMakeFiles\Student_Record_System.dir\Linked_List
 
-build CMakeFiles/Student_Record_System.dir/Admin/Admin.c.obj: C_COMPILER__Student_Record_System_Debug D$:/Student_Record_System/Admin/Admin.c || cmake_object_order_depends_target_Student_Record_System
-  DEP_FILE = CMakeFiles\Student_Record_System.dir\Admin\Admin.c.obj.d
+build CMakeFiles/Student_Record_System.dir/User/Admin/Admin.c.obj: C_COMPILER__Student_Record_System_Debug D$:/Student_Record_System/User/Admin/Admin.c || cmake_object_order_depends_target_Student_Record_System
+  DEP_FILE = CMakeFiles\Student_Record_System.dir\User\Admin\Admin.c.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu99
   OBJECT_DIR = CMakeFiles\Student_Record_System.dir
-  OBJECT_FILE_DIR = CMakeFiles\Student_Record_System.dir\Admin
+  OBJECT_FILE_DIR = CMakeFiles\Student_Record_System.dir\User\Admin
 
 build CMakeFiles/Student_Record_System.dir/App/App.c.obj: C_COMPILER__Student_Record_System_Debug D$:/Student_Record_System/App/App.c || cmake_object_order_depends_target_Student_Record_System
   DEP_FILE = CMakeFiles\Student_Record_System.dir\App\App.c.obj.d
@@ -105,7 +105,7 @@ build CMakeFiles/Student_Record_System.dir/App/App.c.obj: C_COMPILER__Student_Re
 #############################################
 # Link the executable Student_Record_System.exe
 
-build Student_Record_System.exe: C_EXECUTABLE_LINKER__Student_Record_System_Debug CMakeFiles/Student_Record_System.dir/App/main.c.obj CMakeFiles/Student_Record_System.dir/Program/Program.c.obj CMakeFiles/Student_Record_System.dir/Filehandling/Filehandling.c.obj CMakeFiles/Student_Record_System.dir/Validation/Validation.c.obj CMakeFiles/Student_Record_System.dir/Student/Student.c.obj CMakeFiles/Student_Record_System.dir/Linked_List/Linked_List.c.obj CMakeFiles/Student_Record_System.dir/Admin/Admin.c.obj CMakeFiles/Student_Record_System.dir/App/App.c.obj
+build Student_Record_System.exe: C_EXECUTABLE_LINKER__Student_Record_System_Debug CMakeFiles/Student_Record_System.dir/App/main.c.obj CMakeFiles/Student_Record_System.dir/Program/Program.c.obj CMakeFiles/Student_Record_System.dir/Filehandling/Filehandling.c.obj CMakeFiles/Student_Record_System.dir/Program/Validation/Validation.c.obj CMakeFiles/Student_Record_System.dir/User/Student/Student.c.obj CMakeFiles/Student_Record_System.dir/Linked_List/Linked_List.c.obj CMakeFiles/Student_Record_System.dir/User/Admin/Admin.c.obj CMakeFiles/Student_Record_System.dir/App/App.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Student_Record_System.dir

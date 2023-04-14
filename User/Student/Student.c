@@ -1,8 +1,5 @@
 #include "Student.h"
 
-
-
-
 // Edit Student Name
 
 char *EditStudentName(StudentNode *Head,long ID){
@@ -13,17 +10,20 @@ char *EditStudentName(StudentNode *Head,long ID){
     {
         if(ID == Current->Data.Student.ID)
         {
-            printf("\n-----------<Edit Your Name>-----------\n"
+            printf("\n  -----------<<<Edit Your Name>>>-----------  \n"
                           "Enter your Name : " );
 
             Current->Data.Student.Name = ValidName();
         }
         Current = Current->Link;
     }
+    WriteToStudentFile(Head);
     return "\n\"Name Edited Successfully\"\n\n";
 }
 
+
 // Edit Student password
+
 
 char *EditStudentPassword(StudentNode *Head,long ID){
 
@@ -33,22 +33,25 @@ char *EditStudentPassword(StudentNode *Head,long ID){
     {
         if(ID == Current->Data.Student.ID)
         {
-            printf("\n-----------<Edit Your Password>-----------\n"
+            printf("\n  -----------<<<Edit Your Password>>>-----------  \n"
                           "Enter your password : ");
 
             Current->Data.Student.Password = CheckingPasswordStrength();
         }
         Current = Current->Link;
     }
+    WriteToStudentFile(Head);
     return "\n\"Password Edited Successfully\"\n\n";
 }
 
+
 // Choose Student Features
+
 
 void  ChooseStudentFeatures(StudentNode *Head, long ID){
     printf("\n\t\t\t\tHello, %s\n\n", StudentName(Head, ID));
     while (1) {
-        int choice = ChooseStudentFeaturesValidate(Head, ID);
+        int choice = ChooseStudentFeaturesValidate();
         bool EOP = false;
         switch (choice) {
             case 1:
@@ -65,7 +68,9 @@ void  ChooseStudentFeatures(StudentNode *Head, long ID){
     }
 }
 
+
 // Student Log In
+
 
 void StudentMode(StudentNode *Head)
 {

@@ -2,6 +2,10 @@
 #define PROGRAM_H
 
 #include "../Linked_List/Linked_List.h"
+#include "../Libraries/Libraries.h"
+#include "../Linked_List/Struct.h"
+#include "../Program/Validation/Validation.h"
+
 #define MAX_STRING_LENGTH 50
 
 double CalcTotalDegree(StudentNode *head);
@@ -46,11 +50,7 @@ long StoreAdminPhoneNumber(AdminNode *ptr,long ID);
 
 char *StoreAdminMail(AdminNode *ptr,long ID);
 
-
 char *RandomString(char *str, int Num);
-
-void  ChooseUserMode();
-
 
 
 #endif

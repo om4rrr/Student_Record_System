@@ -8,6 +8,6 @@
 #include <ctype.h>
 #include <time.h>
 #include<windows.h>
-#include <unistd.h>
+#include <conio.h>
 
 #endif

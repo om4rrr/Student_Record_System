@@ -1,8 +1,5 @@
-#include "../Libraries/Libraries.h"
-#include "../Struct/Struct.h"
-#include "../Linked_List/Linked_List.h"
-#include "../Validation/Validation.h"
 #include "Program.h"
+
 
 // We Calculate Student Total degree.
 
@@ -71,12 +68,14 @@ char *CalcSubjectGrade(double TotalDegree){
 
 // Calculate String length
 
+
 size_t Strlen(const char *s){
     const char *p = s;
     while(*s)
         s++;
     return s-p;
 }
+
 
 // Take string from user
 
@@ -105,36 +104,44 @@ char* SetString(){
 }
 
 
-//// Take Password from user encrypted
-//
-//char* SetPassword(){
-//    char *str = (char *)calloc(1,sizeof(char));
-//    int len = 1;
-//    *str = '\0';
-//    char ch;
-//    ch =_getch();
-//    printf("*");
-//    fflush(stdout);
-//    int cnt = 1;
-//    while(ch != 13){
-//        if(cnt == len)
-//        {
-//            str = (char *)realloc(str, (2 * len) * sizeof(char));
-//            len = 2 * len;
-//        }
-//        *(str + cnt - 1) = ch;
-//        *(str + cnt) = '\0';
-//        cnt++;
-//        ch = _getch();
-//        _putch('*');
-//    }
-//    fflush(stdin);
-//    if(len == 1 ) return SetPassword();
-//    return str;
-//}
+// Take Password from user encrypted
+
+
+char* SetPassword(){
+    char *str = (char *)calloc(1,sizeof(char));
+    int len = 1;
+    *str = '\0';
+    char ch;
+    ch =(char)_getch();
+    printf("*");
+    int cnt = 1;
+    while(ch != 13){
+        if(cnt == len)
+        {
+            str = (char *)realloc(str, (2 * len) * sizeof(char));
+            len = 2 * len;
+        }
+        if(ch == 8){
+            putch('\b');
+            putch('\0');
+            putch('\b');
+            cnt--;
+            continue;
+        }
+        *(str + cnt - 1) = ch;
+        *(str + cnt) = '\0';
+        cnt++;
+        ch = (char)_getch();
+        printf("*");
+    }
+    fflush(stdin);
+    if(len == 1 ) return SetPassword();
+    return str;
+}
 
 
 // convert String to int
+
 
 int StringToInt(char* StringNum){
     if(Strlen(StringNum) > 10) return -1;
@@ -148,24 +155,28 @@ int StringToInt(char* StringNum){
     return num;
 }
 
+
 // Print Supporting messages
+
 
 void PrintSupportingMessage(char *str){
     if( !strcmp("A+",str) || !strcmp("A ",str) || !strcmp("A-",str) )
-        printf("\nCongratulations !\nYour excellent results are a testament to your perseverance and determination,\n"
-               "and I have no doubt that you have a bright future ahead of you.\n\n");
+        printf("\n\"Congratulations !\nYour excellent results are a testament to your perseverance and determination,\n"
+               "and I have no doubt that you have a bright future ahead of you.\"\n\n");
     else if(!strcmp("B+",str) || !strcmp("B ",str) || !strcmp("B-",str))
-        printf("\nCongratulations !\nKeep working hard and believing in yourself, and success shall follow you everywhere you go.\n\n");
+        printf("\n\"Congratulations !\nKeep working hard and believing in yourself, and success shall follow you everywhere you go.\"\n\n");
     else if(!strcmp("C+",str) || !strcmp("C ",str) || !strcmp("C-",str))
-        printf("\nCongratulations !\nKeep going, you can do better.\n\n");
+        printf("\n\"Congratulations !\nKeep going, you can do better.\"\n\n");
     else if(!strcmp("D+",str) || !strcmp("D ",str))
-        printf("\nCongratulations !\nKeep going, you can do better.\n\n");
+        printf("\n\"Congratulations !\nKeep going, you can do better.\"\n\n");
     else
-        printf("failure is the opportunity to begin again more intelligently");
+        printf("\"Failure is the opportunity to begin again more intelligently.\"");
 
 }
 
+
 // Store Correct Password
+
 
 char *StoreStudentCorrectPassword(StudentNode *ptr,long ID){
 
@@ -184,7 +195,9 @@ char *StoreStudentCorrectPassword(StudentNode *ptr,long ID){
     return Password;
 }
 
+
 // Store New Password
+
 
 void StoreStudentNewPassword(StudentNode *Head,long ID, char *Password){
 
@@ -199,7 +212,9 @@ void StoreStudentNewPassword(StudentNode *Head,long ID, char *Password){
     }
 }
 
+
 // Student Name
+
 
 char *StudentName(StudentNode *ptr,long ID){
 
@@ -219,7 +234,9 @@ char *StudentName(StudentNode *ptr,long ID){
     return Name;
 }
 
+
 // Store Student National ID
+
 
 char *StoreStudentNationalID(StudentNode *ptr,long ID){
 
@@ -238,7 +255,9 @@ char *StoreStudentNationalID(StudentNode *ptr,long ID){
     return NationalID;
 }
 
+
 // Store Student Phone Number
+
 
 long StoreStudentPhoneNumber(StudentNode *ptr,long ID){
 
@@ -257,7 +276,9 @@ long StoreStudentPhoneNumber(StudentNode *ptr,long ID){
     return phoneNumber;
 }
 
+
 // Store Student E-Mail
+
 
 char *StoreStudentMail(StudentNode *ptr,long ID){
 
@@ -277,7 +298,9 @@ char *StoreStudentMail(StudentNode *ptr,long ID){
     return studentMail;
 }
 
+
 // Generate Random string
+
 
 char *RandomString(char *str, int Num){
 
@@ -296,10 +319,9 @@ char *RandomString(char *str, int Num){
     return str1;
 }
 
-/////////////////////////////////
-
 
 // Store Correct Password
+
 
 char *StoreAdminCorrectPassword(AdminNode *ptr,long ID){
 
@@ -318,7 +340,9 @@ char *StoreAdminCorrectPassword(AdminNode *ptr,long ID){
     return Password;
 }
 
+
 // Store New Password
+
 
 void StoreAdminNewPassword(AdminNode *Head,long ID, char *Password){
 
@@ -333,7 +357,9 @@ void StoreAdminNewPassword(AdminNode *Head,long ID, char *Password){
     }
 }
 
+
 // Student Name
+
 
 char *AdminName(AdminNode *ptr,long ID){
 
@@ -353,7 +379,9 @@ char *AdminName(AdminNode *ptr,long ID){
     return Name;
 }
 
+
 // Store Student National ID
+
 
 char *StoreAdminNationalID(AdminNode *ptr,long ID){
 
@@ -372,7 +400,9 @@ char *StoreAdminNationalID(AdminNode *ptr,long ID){
     return NationalID;
 }
 
+
 // Store Student Phone Number
+
 
 long StoreAdminPhoneNumber(AdminNode *ptr,long ID){
 
@@ -391,7 +421,9 @@ long StoreAdminPhoneNumber(AdminNode *ptr,long ID){
     return phoneNumber;
 }
 
+
 // Store Student E-Mail
+
 
 char *StoreAdminMail(AdminNode *ptr,long ID){
 

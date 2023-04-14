@@ -33,8 +33,7 @@ typedef struct SubjectsGrades{
 
 typedef struct StudentInfo{
     struct UserInfo Student;
-    struct SubjectsGrades Subject;  // StudentInfo ob;   ob.Subject.DigitalCircuits.Degree = 100, ob.Subject.DigitalCircuits.Rate = "A+"
-                                   //  ob.Student.Id = 123456789  ob.TotalDegree = 700
+    struct SubjectsGrades Subject;
     double GPA;
     double TotalDegree;
     char *TotalGrade;

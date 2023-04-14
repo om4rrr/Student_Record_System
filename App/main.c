@@ -1,10 +1,4 @@
-#include "../Libraries/Libraries.h"
-#include "../Struct/Struct.h"
-#include "../Validation/Validation.h"
-#include "../Filehandling/Filehandling.h"
 #include "App.h"
-
-
 
 int main()
 {
