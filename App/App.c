@@ -3,7 +3,7 @@
 // Start App
 
 void StartApp(StudentNode **StudentHead, AdminNode *AdminHead){
-
+    system("cls");
     while(1){
         int choice = ChooseModeValidate();
         bool EOP = false;

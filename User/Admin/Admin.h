@@ -23,7 +23,7 @@ char *DeleteStudent(StudentNode** head);
 
 char *AddNewStudent(StudentNode **Head);
 
-void PrintStudentInfo_ForAdmin(StudentNode *head, long ID);
+void PrintStudentInfo_ForAdmin(StudentNode *head);
 
 void PrintAllRecords(StudentNode *head);
 

@@ -6,7 +6,6 @@
 void PrintAllRecords(StudentNode *head){
     struct StudentNode *ptr = NULL;
     ptr = head;
-
     printf("\n*---------------------------------------------------------------------------------<<<<ALL STUDENT RECORDS>>>>--------------------------------------------------------------------------------*\n\n");
     printf("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
     printf("    Student Name             Student ID         Digital Circuits    Control System    Data Structure    Electronics     Programming     Measurements      GPA      Total Degree     Total Grade\n");
@@ -28,25 +27,36 @@ void PrintAllRecords(StudentNode *head){
 
 // Print Student information for Admin
 
-void PrintStudentInfo_ForAdmin(StudentNode *head, long ID){
-    struct StudentNode *ptr = NULL;
-    ptr = head;
-    while(ptr != NULL)
-    {
-        if(ptr->Data.Student.ID == ID){
-            printf("\nName : %s\t\tID : %ld \n",ptr->Data.Student.Name,ptr->Data.Student.ID);
-            printf("\nTotal Degree : %.2lf\tTotal Grade : %s     GPA : %.1lf \n",ptr->Data.TotalDegree,ptr->Data.TotalGrade,ptr->Data.GPA);
-            printf("______________________________________________________\n");
-            printf("\n    Subject      \t\tDegree\t\tGrade\n\n");
-            printf(" Digital_Circuits\t\t  %d \t\t  %s\n",ptr->Data.Subject.DigitalCircuits.Degree,ptr->Data.Subject.DigitalCircuits.Rate);
-            printf(" Control_System  \t\t  %d \t\t  %s\n",ptr->Data.Subject.ControlSystem.Degree  ,ptr->Data.Subject.ControlSystem.Rate);
-            printf(" Data_Structure  \t\t  %d \t\t  %s\n",ptr->Data.Subject.DataStructure.Degree  ,ptr->Data.Subject.DataStructure.Rate);
-            printf(" Electronics     \t\t  %d \t\t  %s\n",ptr->Data.Subject.Electronics.Degree    ,ptr->Data.Subject.Electronics.Rate);
-            printf(" Programming     \t\t  %d \t\t  %s\n",ptr->Data.Subject.Programming.Degree    ,ptr->Data.Subject.Programming.Rate);
-            printf(" Measurements    \t\t  %d \t\t  %s\n",ptr->Data.Subject.Measurements.Degree  ,ptr->Data.Subject.Measurements.Rate);
-            printf("______________________________________________________\n");
+void PrintStudentInfo_ForAdmin(StudentNode *head){
+    long ID;
+    printf("\n\nEnter ID : ");
+    ID = CheckStudentID(head);
+    if(ID > 0) {
+        StudentNode *ptr = NULL;
+        ptr = head;
+        while (ptr != NULL) {
+            if (ptr->Data.Student.ID == ID) {
+                printf("\nName : %s\t\tID : %ld \n", ptr->Data.Student.Name, ptr->Data.Student.ID);
+                printf("\nTotal Degree : %.2lf\tTotal Grade : %s     GPA : %.1lf \n", ptr->Data.TotalDegree,
+                       ptr->Data.TotalGrade, ptr->Data.GPA);
+                printf("______________________________________________________\n");
+                printf("\n    Subject      \t\tDegree\t\tGrade\n\n");
+                printf(" Digital_Circuits\t\t  %d \t\t  %s\n", ptr->Data.Subject.DigitalCircuits.Degree,
+                       ptr->Data.Subject.DigitalCircuits.Rate);
+                printf(" Control_System  \t\t  %d \t\t  %s\n", ptr->Data.Subject.ControlSystem.Degree,
+                       ptr->Data.Subject.ControlSystem.Rate);
+                printf(" Data_Structure  \t\t  %d \t\t  %s\n", ptr->Data.Subject.DataStructure.Degree,
+                       ptr->Data.Subject.DataStructure.Rate);
+                printf(" Electronics     \t\t  %d \t\t  %s\n", ptr->Data.Subject.Electronics.Degree,
+                       ptr->Data.Subject.Electronics.Rate);
+                printf(" Programming     \t\t  %d \t\t  %s\n", ptr->Data.Subject.Programming.Degree,
+                       ptr->Data.Subject.Programming.Rate);
+                printf(" Measurements    \t\t  %d \t\t  %s\n", ptr->Data.Subject.Measurements.Degree,
+                       ptr->Data.Subject.Measurements.Rate);
+                printf("______________________________________________________\n");
+            }
+            ptr = ptr->Link;
         }
-        ptr = ptr->Link;
     }
 }
 
@@ -66,36 +76,36 @@ char *AddNewStudent(StudentNode **Head){
 
     // Ask Admin For Student Data
 
-    printf("\nEnter ID \"Only digits are allowed\" : ");
+    printf("\n\nEnter ID \"Only digits are allowed\" : ");
     temp->Data.Student.ID = CheckExistingID(*Head);
-    printf("\nEnter National ID : ");
+    printf("\n\nEnter National ID : ");
     temp->Data.Student.NationalID = ValidateNationalIDLength();
-    printf("\nEnter Phone Number : +20");
+    printf("\n\nEnter Phone Number : +20");
     temp->Data.Student.PhoneNumber = CheckPhoneNumber();
-    printf("\nEnter Name : ");
+    printf("\n\nEnter Name : ");
     temp->Data.Student.Name = ValidName();
-    printf("\nEnter Password : ");
+    printf("\n\nEnter Password : ");
     temp->Data.Student.Password = CheckingPasswordStrength();
-    printf("\nEnter E-mail : ");
+    printf("\n\nEnter E-mail : ");
     temp->Data.Student.Mail = CheckMailValidation();
-    printf("\nEnter Gender : ");
+    printf("\n\nEnter Gender : ");
     temp->Data.Student.Gender = ValidateGender();
-    printf("\nEnter Age : ");
+    printf("\n\nEnter Age : ");
     temp->Data.Student.Age = ValidateStudentAge();
 
     // Ask Admin For Student_Degrees Data
 
-    printf("\nEnter Digital_Circuits Degree : ");
+    printf("\n\nEnter Digital_Circuits Degree : ");
     temp->Data.Subject.DigitalCircuits.Degree = ValidateSubjectDegree();
-    printf("\nEnter Control_System Degree : ");
+    printf("\n\nEnter Control_System Degree : ");
     temp->Data.Subject.ControlSystem.Degree = ValidateSubjectDegree();
-    printf("\nEnter Data_Structure Degree : ");
+    printf("\n\nEnter Data_Structure Degree : ");
     temp->Data.Subject.DataStructure.Degree = ValidateSubjectDegree();
-    printf("\nEnter Electronics Degree : ");
+    printf("\n\nEnter Electronics Degree : ");
     temp->Data.Subject.Electronics.Degree = ValidateSubjectDegree();
-    printf("\nEnter Programming Degree : ");
+    printf("\n\nEnter Programming Degree : ");
     temp->Data.Subject.Programming.Degree = ValidateSubjectDegree();
-    printf("\nEnter Measurements Degree : ");
+    printf("\n\nEnter Measurements Degree : ");
     temp->Data.Subject.Measurements.Degree = ValidateSubjectDegree();
 
     // Assign Subject Grade
@@ -128,7 +138,7 @@ char *AddNewStudent(StudentNode **Head){
         }
         curr->Link = temp;
     }
-    return "\n\"Student Added Successfully\"\n";
+    return "\n\n\"Student Added Successfully\"\n\n";
 }
 
 
@@ -138,7 +148,7 @@ char *AddNewStudent(StudentNode **Head){
 char *ModifyStudentGrade(StudentNode *head){
 
     long ID;
-    printf("Enter ID : ");
+    printf("\n\nEnter ID : ");
     ID = CheckStudentID(head);
     if(ID > 0) {
 
@@ -151,7 +161,7 @@ char *ModifyStudentGrade(StudentNode *head){
                 if (ptr->Data.Student.ID == ID) {
 
                     Choice1 = ChoiceSubjectValidate();
-                    printf("\nEnter new Degree : ");
+                    printf("\n\nEnter new Degree : ");
                     NewDegree = ValidateSubjectDegree();
                     switch (Choice1) {
                         case 1 :
@@ -191,7 +201,7 @@ char *ModifyStudentGrade(StudentNode *head){
         free(ptr);
         ptr = NULL;
 
-        return "\n\"Student Grade Edited Successfully\"\n";
+        return "\n\n\"Student Grade Edited Successfully\"\n\n";
     }
     else return "";
 }
@@ -206,7 +216,7 @@ char *DeleteStudent(StudentNode** head){
     // get ID from admin
 
     long ID;
-    printf("Enter ID : ");
+    printf("\n\nEnter ID : ");
     ID = CheckStudentID(*head);
     if(ID > 0) {
 
@@ -237,12 +247,12 @@ char *DeleteStudent(StudentNode** head){
             free(current);
             current = NULL;
         }
-        return "\n\"Student Removed Successfully\"\n";
+        return "\n\n\"Student Removed Successfully\"\n\n";
     }
     else return "";
 }
 
-// Edit Student Name
+// Edit Admin Name
 
 char *EditAdminName(AdminNode *Head,long ID){
 
@@ -252,18 +262,22 @@ char *EditAdminName(AdminNode *Head,long ID){
     {
         if(ID == Current->Data.ID)
         {
-            printf("\n  ------------<<Edit Your Name>>------------  \n"
-                   "Enter your Name : " );
-
-            Current->Data.Name = ValidName();
+            printf("\n\n  ------------<<Edit Your Name>>------------  \n");
+            char *name;
+            do{
+                printf("\nEnter your Name : ");
+                name = ValidName();
+            }while(!strcmp(name,Current->Data.Name) && printf("\n\n\"This name is the previous name\", try again...\n"));
+            Current->Data.Name = name;
+            break;
         }
         Current = Current->Link;
     }
     WriteToAdminFile(Head);
-    return "\n\"Name Edited Successfully\"\n\n";
+    return "\n\n\"Name Edited Successfully\"\n\n";
 }
 
-// Edit Student password
+// Edit Admin password
 
 char *EditAdminPassword(AdminNode *Head,long ID){
 
@@ -273,29 +287,33 @@ char *EditAdminPassword(AdminNode *Head,long ID){
     {
         if(ID == Current->Data.ID)
         {
-            printf("\n  -----------<<Edit Your Password>>-----------  \n"
-                   "Enter your password : ");
-
-            Current->Data.Password = CheckingPasswordStrength();
+            printf("\n\n  ------------<<Edit Your Password>>------------  \n");
+            char *password;
+            do{
+                printf("\nEnter your Password : ");
+                password = SetPassword();;
+            }while(!strcmp(password,Current->Data.Password) && printf("\n\n\"This password is the previous password\", try again...\n"));
+            Current->Data.Password = password;
+            break;
         }
         Current = Current->Link;
     }
     WriteToAdminFile(Head);
-    return "\n\"Password Edited Successfully\"\n\n";
+    return "\n\n\"Password Edited Successfully\"\n\n";
 }
 
 
 // Choose Admin Features
 
 void  ChooseAdminFeatures(AdminNode *AdminHead, StudentNode **StudentHead, long ID){
-
+    system("cls");
     while(1) {
-        printf("\n*------------------------<<<<Hello, %s>>>>--------------------------*\n\n", AdminName(AdminHead, ID));
+        printf("\n\n\t\t\t\t*----------------------------<<<<Hello, %s>>>>-------------------------------*\n", AdminName(AdminHead, ID));
         printf("\n\nEnter Appropriate Choice...\n");
         int choice1;
         char *temp;
         do {
-            printf("\n1. Student Affairs\t\t\t2. Edit your information\t\t\t3. Quit\nYour Choice Number : ");
+            printf("\n1. Student Affairs\t\t\t2. Edit your information\t\t\t3. Quit\n\nYour Choice Number : ");
             fflush(stdout);
             temp = SetString();
             choice1 = atoi(temp);
@@ -307,24 +325,30 @@ void  ChooseAdminFeatures(AdminNode *AdminHead, StudentNode **StudentHead, long 
                 bool Quit = false;
                 switch (choice) {
                     case 1:
+                        system("cls");
                         printf("%s",AddNewStudent(StudentHead));
                         WriteToStudentFile(*StudentHead);
                         break;
                     case 2:
+                        system("cls");
                         printf("%s",DeleteStudent(StudentHead));
                         WriteToStudentFile(*StudentHead);
                         break;
                     case 3:
-                        PrintStudentInfo_ForAdmin(*StudentHead, ID);
+                        system("cls");
+                        PrintStudentInfo_ForAdmin(*StudentHead);
                         break;
                     case 4:
+                        system("cls");
                         PrintAllRecords(*StudentHead);
                         break;
                     case 5:
+                        system("cls");
                         printf("%s",ModifyStudentGrade(*StudentHead));
                         WriteToStudentFile(*StudentHead);
                         break;
                     case 6:
+                        system("cls");
                         Quit = true; break;
 
                 }
@@ -336,12 +360,15 @@ void  ChooseAdminFeatures(AdminNode *AdminHead, StudentNode **StudentHead, long 
                 bool Quit = false;
                 switch (choice) {
                     case 1:
+                        system("cls");
                         printf("%s", EditAdminName(AdminHead, ID));
                         break;
                     case 2:
+                        system("cls");
                         printf("%s", EditAdminPassword(AdminHead, ID));
                         break;
                     case 3:
+                        system("cls");
                         Quit = true;
                         break;
                 }

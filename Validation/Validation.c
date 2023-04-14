@@ -1,3 +1,4 @@
+
 #include "Validation.h"
 
 // Validate Student ID Length
@@ -15,7 +16,7 @@ long ValidateIDLength(){
             count++;
             ID /= 10;
         }
-    } while (count != 9 && printf("\nID must consist of 9 digits, Try again..\nEnter ID : "));
+    } while (count != 9 && printf("\nID must consist of 9 digits, Try again..\n\nEnter ID : "));
     return temp;
 }
 
@@ -28,7 +29,7 @@ char *ValidateNationalIDLength(){
     do{
         NationalID = SetString();
 
-    } while (Strlen(NationalID)  != 14 && printf("\nNational ID must consist of 14 digits, Try again..\nEnter National ID : "));
+    } while (Strlen(NationalID)  != 14 && printf("\nNational ID must consist of 14 digits, Try again..\n\nEnter National ID : "));
     return NationalID;
 }
 
@@ -40,7 +41,7 @@ char *ValidatePhoneNumberLength(){
     char *temp;
     do{
         temp = SetString();
-    } while (Strlen(temp) != 10 && printf("\nPhone Number must consist of 11 digits, Try again..\n""Enter Phone Number : +20"));
+    } while (Strlen(temp) != 10 && printf("\nPhone Number must consist of 11 digits, Try again..\n\nEnter Phone Number : +20"));
     return temp;
 }
 
@@ -53,7 +54,7 @@ long CheckPhoneNumber(){
     do{
         temp = ValidatePhoneNumberLength();
     } while ((temp[0] != '1' && (temp[1] != '0' && temp[1] != '1' &&  temp[1] != '2' &&  temp[1] != '5'))
-             && printf("\nWrong Phone Number, Try again..\nEnter Phone Number : +20"));
+             && printf("\nWrong Phone Number, Try again..\n\nEnter Phone Number : +20"));
     return StringToInt(temp);
 }
 
@@ -82,14 +83,14 @@ bool IsValid(char *email)
 
     if (At > Dot) return 0;
 
-    return !(Dot >= (Strlen(email) - 1));
+    return Dot < (Strlen(email) - 1);
 }
 
 char *CheckMailValidation(){
     char *Mail = NULL;
     do{
         Mail = SetString();
-    } while (!IsValid(Mail) && printf("Invalid E-mail, Try again...\nEnter E-mail : "));
+    } while (!IsValid(Mail) && printf("Invalid E-mail, Try again...\n\nEnter E-mail : "));
     return Mail;
 }
 
@@ -113,7 +114,7 @@ long CheckExistingID(StudentNode *head){
             }
             ptr = ptr->Link;
         }
-    }while(!flag && printf("\nID already exist, Try again..\nEnter ID : "));
+    }while(!flag && printf("\nID already exist, Try again..\n\nEnter ID : "));
 
     return ID;
 }
@@ -137,7 +138,7 @@ char* ValidName(){
             else if(str[i] == ' ') c++;
             else {check = false; break; }
         }
-    }while(((c < 2)  || !check) && printf("\nInvalid Name, Please enter first, middle, and last name correctly\nEnter Name : "));
+    }while(((c < 2)  || !check) && printf("\nInvalid Name, Please enter first, middle, and last name correctly\n\nEnter Name : "));
     return str;
 }
 
@@ -163,7 +164,7 @@ char *CheckingPasswordStrength(){
             else if (str[i] - '0' >= 0 && str[i] - '0' <= 9) Digit = true;
             else Special = true;
         }
-    }while((Strlen(str) < 8 || !Lower || !Upper || !Digit || !Special) && printf("\n\"The new password is weak, and will reduce the security of system\n"
+    }while((Strlen(str) < 8 || !Lower || !Upper || !Digit || !Special) && printf("\n\n\"The new password is weak, and will reduce the security of system\n"
                                                                                  "password must contain at least 8 characters,\none uppercase, one lowercase, one"
                                                                                  "number and one special character.\"\n\nEnter Password : "));
     return str;
@@ -205,7 +206,7 @@ int ValidateStudentAge(){
     do{
         temp = SetString();
         Var = StringToInt(temp);
-    }while((Var < 18 || Var > 50) && printf("\nInvalid Age, Try again...\nEnter Age : "));
+    }while((Var < 18 || Var > 50) && printf("\nInvalid Age, Try again...\n\nEnter Age : "));
     return Var;
 
 }
@@ -219,7 +220,7 @@ char* ValidateGender(){
     do{
         Gender = SetString();
     } while(((strcmp("female",Gender) && strcmp("male",Gender) && (strcmp("Female",Gender) && strcmp("Male",Gender))))
-    && printf("\nNot valid, Please try again..\nEnter Gender : ") );
+            && printf("\nNot valid, Please try again..\n\nEnter Gender : ") );
     return Gender;
 }
 
@@ -233,7 +234,7 @@ int ValidateSubjectDegree(){
     do{
         temp = SetString();
         Var = StringToInt(temp);
-    }while( (Var < 0 || Var > 125) && printf("\nInvalid Degree, Try again...\nEnter Student Degree : ") );
+    }while( (Var < 0 || Var > 125) && printf("\nInvalid Degree, Try again...\n\nEnter Student Degree : ") );
     return Var;
 }
 
@@ -245,12 +246,12 @@ int ChoiceSubjectValidate()
 {
     int Choice;
     char *temp;
-    printf("\nSelect the subject number to modify:\n1-Digital_Circuits\t2-Control_System\t3-Data_Structure\t"
-           "4-Electronics\t5-Programming\t6-Measurements\nYour Choice : ");
+    printf("\nSelect the subject number to modify:\n\n1-Digital_Circuits\t2-Control_System\t3-Data_Structure\t"
+           "4-Electronics\t5-Programming\t6-Measurements\n\nYour Choice : ");
     do{
         temp = SetString();
         Choice = StringToInt(temp);
-    } while((Choice<1 || Choice>6) && printf("\nInvalid Choice! please try again..\nYour Choice : "));
+    } while((Choice<1 || Choice>6) && printf("\nInvalid Choice! please try again..\n\nYour Choice : "));
     return Choice;
 }
 
@@ -265,7 +266,7 @@ int ChoiceAnotherSubjectValidate()
         printf("\nwant to modify another Subject?     1-YES  2-NO\n");
         temp = SetString();
         choice = StringToInt(temp);
-    } while((choice!=1 && choice!=2) && printf("Invalid Choice! please try again..\nYour Choice : "));
+    } while((choice!=1 && choice!=2) && printf("\nInvalid Choice! please try again..\n\nYour Choice : "));
     return choice;
 }
 
@@ -276,11 +277,11 @@ int ChoiceAnotherSubjectValidate()
 int ChooseModeValidate(){
     int choice;
     char *temp;
-    printf("\n\n*-----------------------------------------------<<<<Welcome to Student_Record_System !>>>>-----------------------------------------------*\n\n");
+    printf("\n\n\t\t\t\t*-----------------------------------------------<<<<Welcome to Student_Record_System !>>>>-----------------------------------------------*\n\n");
     do{
-        printf("Choose your Mode..."
-               "\n1. Student Mode\t\t\t2. Admin Mode"
-               "\t\t\t3. Quit\nYour Choice Number : ");
+        printf("\nChoose your Mode..."
+               "\n\n1. Student Mode\t\t\t2. Admin Mode"
+               "\t\t\t3. Quit\n\nYour Choice Number : ");
         fflush(stdout);
         temp = SetString();
         choice = StringToInt(temp);
@@ -296,12 +297,12 @@ int ChooseStudentFeaturesValidate(){
     int choice;
     char *temp;
     do{
-        printf("Enter Appropriate number to perform following tasks "
-               "\n1. View your record\t\t2. Edit your password."
-               "\t\t3. Edit your name\t\t4. Quit\nEnter Choice Number : ");
+        printf("\nEnter Appropriate number to perform following tasks "
+               "\n\n1. View your record\t\t2. Edit your password."
+               "\t\t3. Edit your name\t\t4. Quit\n\nEnter Choice Number : ");
         temp = SetString();
         choice = StringToInt(temp);
-    } while((choice < 1 || choice > 4) && printf("Invalid Choice! please try again..\n"));
+    } while((choice < 1 || choice > 4) && printf("\nInvalid Choice! please try again..\n"));
     return choice;
 }
 
@@ -322,7 +323,7 @@ bool CheckStudentData(StudentNode *Head,long ID){
     do{
         NationalID = SetString();
         cnt++;
-    }while(strcmp(NationalID,CorrectNationalID) && cnt < 3 && printf("\nWrong National ID, Try again...\nEnter your National ID : "));
+    }while(strcmp(NationalID,CorrectNationalID) && cnt < 3 && printf("\nWrong National ID, Try again...\n\nEnter your National ID : "));
     if(cnt >= 3) return false;
 
     // Take Phone Number
@@ -336,7 +337,7 @@ bool CheckStudentData(StudentNode *Head,long ID){
         temp = SetString();
         PhoneNumber = StringToInt(temp);
         cnt++;
-    }while(CorrectPhoneNumber != PhoneNumber && cnt < 3 && printf("\nWrong Phone Number, Try again...\nEnter your Phone Number : +20"));
+    }while(CorrectPhoneNumber != PhoneNumber && cnt < 3 && printf("\nWrong Phone Number, Try again...\n\nEnter your Phone Number : +20"));
     if(cnt >= 3) return false;
 
     // Take E-mail
@@ -349,7 +350,7 @@ bool CheckStudentData(StudentNode *Head,long ID){
     do{
         Mail = SetString();
         cnt++;
-    }while(strcmp(Mail,CorrectMail) && cnt < 3 && printf("\nWrong E-mail, Try again...\nEnter your E-mail : "));
+    }while(strcmp(Mail,CorrectMail) && cnt < 3 && printf("\nWrong E-mail, Try again...\n\nEnter your E-mail : "));
     if(cnt >= 3) return false;
 
     return true;
@@ -377,7 +378,7 @@ long CheckStudentID(StudentNode *Head){
             Current = Current->Link;
         }
         cnt++;
-    }while(flag && cnt < 10 && printf("\nWrong ID, Try again..\nEnter ID : "));
+    }while(flag && cnt < 10 && printf("\nWrong ID, Try again..\n\nEnter ID : "));
 
     if(cnt >= 10) {printf("\nSorry, You entered wrong ID many times, try later...\n") ; return 0;}
 
@@ -394,7 +395,7 @@ int ChoiceValidation(){
     do{
         temp = SetString();
         var = StringToInt(temp);
-    }while(var != 1 && var != 2 && printf("Invalid Choice, try again...\nYour Choice : "));
+    }while(var != 1 && var != 2 && printf("\nInvalid Choice, try again...\n\nYour Choice : "));
     return var;
 }
 
@@ -419,19 +420,19 @@ bool CheckStudentPassword(StudentNode *Head, long ID){
                 WriteToStudentFile(Head);
                 return true; // go to next background (Student's features)
             }else{
-                printf("Sorry, You entered wrong Information three times, Try later...");
+                printf("\nSorry, You entered wrong Information three times, Try later...\n");
                 return false; // return to previous background (Admin or Student)
             }
         }
         else
         {
-            if(cnt > 2) {printf("Sorry, You entered wrong Password three times, Try later..."); return false;}
-            if(f)printf("\nEnter your password : ");
+            if(cnt > 2) {printf("\nSorry, You entered wrong Password three times, Try later...\n"); return false;}
+            if(f)printf("\n\nEnter your password : ");
             Password = SetPassword();
             cnt++;
         }
     }while(strcmp(CorrectPassword,Password) && printf("\nWrong Password, \"If you forget your "
-                                                      "password, Enter (1)  ,  if not and want to ""try again... Enter (2)\"\nYour Choice : ") && (f = true));
+                                                      "password, Enter (1)  ,  if not and want to ""try again... Enter (2)\"\n\nYour Choice : ") && (f = true));
     return true;
 }
 
@@ -441,7 +442,7 @@ bool CheckStudentPassword(StudentNode *Head, long ID){
 
 bool CheckAdminData(AdminNode *Head,long ID){
 
-    printf("\n\"We need you to enter the following information to verify your identity\"\n");
+    printf("\n\n\"We need you to enter the following information to verify your identity\"\n\n");
 
 
     // Take National ID
@@ -454,7 +455,7 @@ bool CheckAdminData(AdminNode *Head,long ID){
     do{
         NationalID = SetString();
         cnt++;
-    }while(strcmp(NationalID,CorrectNationalID) && cnt < 3 && printf("\nWrong National ID, Try again...\nEnter your National_ID : "));
+    }while(strcmp(NationalID,CorrectNationalID) && cnt < 3 && printf("\nWrong National ID, Try again...\n\nEnter your National_ID : "));
     if(cnt >= 3) { return false;}
 
     // Take Phone Number
@@ -468,7 +469,7 @@ bool CheckAdminData(AdminNode *Head,long ID){
         temp = SetString();
         PhoneNumber = StringToInt(temp);
         cnt++;
-    }while(CorrectPhoneNumber != PhoneNumber && cnt < 3 && printf("\nWrong Phone Number, Try again...\nEnter your Phone Number : +20"));
+    }while(CorrectPhoneNumber != PhoneNumber && cnt < 3 && printf("\nWrong Phone Number, Try again...\n\nEnter your Phone Number : +20"));
     if(cnt >= 3) { return false;}
 
     // Take E-mail
@@ -481,7 +482,7 @@ bool CheckAdminData(AdminNode *Head,long ID){
     do{
         Mail = SetString();
         cnt++;
-    }while(strcmp(Mail,CorrectMail) && cnt < 3 && printf("\nWrong E-mail, Try again...\nEnter your E-mail : "));
+    }while(strcmp(Mail,CorrectMail) && cnt < 3 && printf("\nWrong E-mail, Try again...\n\nEnter your E-mail : "));
     if(cnt >= 3) { return false;}
 
     return true;
@@ -510,9 +511,9 @@ long CheckAdminID(AdminNode *Head){
             Current = Current->Link;
         }
         cnt++;
-    }while(flag && cnt < 10 && printf("\nWrong ID, Try again..\nEnter your ID : "));
+    }while(flag && cnt < 10 && printf("\nWrong ID, Try again..\n\nEnter your ID : "));
 
-    if(cnt >= 10) {printf("Sorry, You entered wrong ID many times") ; return 0;}
+    if(cnt >= 10) {printf("\nSorry, You entered wrong ID many times\n") ; return 0;}
 
     return ID;
 }
@@ -536,19 +537,19 @@ bool CheckAdminPassword(AdminNode *Head, long ID){
             {
                 char *str = NULL;
                 str = CheckingRandomPasswordStrength(); // calling CheckingRandomPasswordStrength --> calling Generating RandomPassword
-                printf("\nYour New Password is \"%s\"\n",str);
+                printf("\n\nYour New Password is \"%s\"\n",str);
                 StoreAdminNewPassword(Head,ID,str);
                 WriteToAdminFile(Head);
                 return true; // go to next background (Student's features)
             }else{
-                printf("Sorry, You entered wrong Information three times, Try later...");
+                printf("\nSorry, You entered wrong Information three times, Try later...\n");
                 return false; // return to previous background (Admin or Student)
             }
         }
         else
         {
             if(cnt > 2) {printf("Sorry, You entered wrong Password three times, Try later..."); return false;}
-            if(f)printf("\nEnter your password : ");
+            if(f)printf("\n\nEnter your password : ");
             Password = SetPassword();
             cnt++;
         }
@@ -566,12 +567,12 @@ int StudentAffairsValidate(){
     int choice;
     char *temp;
     do{
-        printf("Enter Appropriate number to perform following tasks..."
-               "\n1. Add New Student\t\t2. Remove Student.\t\t3. View Student Record\t\t"
+        printf("\nEnter Appropriate number to perform following tasks..."
+               "\n\n1. Add New Student\t\t2. Remove Student.\t\t3. View Student Record\t\t"
                "\t\t4. View All Records\t\t5. Edit Student Grade\t\t6. Quit\n\nYour Choice Number : ");
         temp = SetString();
         choice = StringToInt(temp);
-    } while((choice < 1 || choice > 6) && printf("Invalid Choice! please try again..\n"));
+    } while((choice < 1 || choice > 6) && printf("\nInvalid Choice! please try again..\n"));
     return choice;
 }
 
@@ -579,11 +580,11 @@ int EditAdminInfoValidate(){
     int choice;
     char *temp;
     do{
-        printf("Enter Appropriate number to perform following tasks..."
-               "\n1. Edit your name\t\t2. Edit your password.\t\t3. Quit\n\nYour Choice Number : ");
+        printf("\nEnter Appropriate number to perform following tasks..."
+               "\n\n1. Edit your name\t\t2. Edit your password.\t\t3. Quit\n\nYour Choice Number : ");
         temp = SetString();
         choice = StringToInt(temp);
-    } while((choice < 1 || choice > 3) && printf("Invalid Choice! please try again..\n"));
+    } while((choice < 1 || choice > 3) && printf("\nInvalid Choice! please try again..\n"));
     return choice;
 
 }

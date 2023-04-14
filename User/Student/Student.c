@@ -31,22 +31,25 @@ void PrintStudentInfo(StudentNode *head, long ID){
 // Edit Student Name
 
 char *EditStudentName(StudentNode *Head,long ID){
-
     StudentNode *Current=NULL;
     Current = Head;
     while(Current != NULL)
     {
         if(ID == Current->Data.Student.ID)
         {
-            printf("\n  -----------<<<Edit Your Name>>>-----------  \n"
-                          "Enter your Name : " );
-
-            Current->Data.Student.Name = ValidName();
+            printf("\n\n  ------------<<Edit Your Name>>------------  \n");
+            char *name;
+            do{
+                printf("Enter your Name : ");
+                name = ValidName();
+            }while(!strcmp(name,Current->Data.Student.Name) && printf("\n\n\"This name is the previous name\", try again...\n"));
+            Current->Data.Student.Name = name;
+            break;
         }
         Current = Current->Link;
     }
     WriteToStudentFile(Head);
-    return "\n\"Name Edited Successfully\"\n\n";
+    return "\n\n\"Name Edited Successfully\"\n\n";
 }
 
 
@@ -61,15 +64,19 @@ char *EditStudentPassword(StudentNode *Head,long ID){
     {
         if(ID == Current->Data.Student.ID)
         {
-            printf("\n  -----------<<<Edit Your Password>>>-----------  \n"
-                          "Enter your password : ");
-
-            Current->Data.Student.Password = CheckingPasswordStrength();
+            printf("\n\n  ------------<<Edit Your Password>>------------  \n");
+            char *password;
+            do{
+                printf("Enter your Password : ");
+                password = SetPassword();
+            }while(!strcmp(password,Current->Data.Student.Password) && printf("\n\n\"This name is the previous password\", try again...\n"));
+            Current->Data.Student.Password = password;
+            break;
         }
         Current = Current->Link;
     }
     WriteToStudentFile(Head);
-    return "\n\"Password Edited Successfully\"\n\n";
+    return "\n\n\"Password Edited Successfully\"\n\n";
 }
 
 
@@ -77,18 +84,25 @@ char *EditStudentPassword(StudentNode *Head,long ID){
 
 
 void  ChooseStudentFeatures(StudentNode *Head, long ID){
-    printf("\n\t\t\t\tHello, %s\n\n", StudentName(Head, ID));
+    int n = 30;
+    system("cls");
+    printf("\n\n\t\t\t\t*-----------------------------------------------<<<<Hello, "
+                  "%s>>>>-----------------------------------------------*\n\n", StudentName(Head, ID),n,' ');
     while (1) {
         int choice = ChooseStudentFeaturesValidate();
         bool EOP = false;
         switch (choice) {
             case 1:
+                system("cls");
                 PrintStudentInfo(Head, ID); break;
             case 2:
+                system("cls");
                 printf("%s",EditStudentPassword(Head, ID)); break;
             case 3:
+                system("cls");
                 printf("%s",EditStudentName(Head, ID)); break;
             case 4:
+                system("cls");
                 EOP = true;
                 break;
         }
