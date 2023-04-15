@@ -262,7 +262,7 @@ char *EditAdminName(AdminNode *Head,long ID){
     {
         if(ID == Current->Data.ID)
         {
-            printf("\n\n  ------------<<Edit Your Name>>------------  \n");
+            printf("\n\n\t\t\t\t*-----------------------------------------------<<<<Edit Your Name>>>>-----------------------------------------------*\n\n");
             char *name;
             do{
                 printf("\nEnter your Name : ");
@@ -287,11 +287,11 @@ char *EditAdminPassword(AdminNode *Head,long ID){
     {
         if(ID == Current->Data.ID)
         {
-            printf("\n\n  ------------<<Edit Your Password>>------------  \n");
+            printf("\n\n\t\t\t\t*-----------------------------------------------<<<<Edit Your Password>>>>-----------------------------------------------*\n\n");
             char *password;
             do{
                 printf("\nEnter your Password : ");
-                password = SetPassword();;
+                password = CheckingPasswordStrength();
             }while(!strcmp(password,Current->Data.Password) && printf("\n\n\"This password is the previous password\", try again...\n"));
             Current->Data.Password = password;
             break;
@@ -306,7 +306,6 @@ char *EditAdminPassword(AdminNode *Head,long ID){
 // Choose Admin Features
 
 void  ChooseAdminFeatures(AdminNode *AdminHead, StudentNode **StudentHead, long ID){
-    system("cls");
     while(1) {
         printf("\n\n\t\t\t\t*----------------------------<<<<Hello, %s>>>>-------------------------------*\n", AdminName(AdminHead, ID));
         printf("\n\nEnter Appropriate Choice...\n");
@@ -325,30 +324,24 @@ void  ChooseAdminFeatures(AdminNode *AdminHead, StudentNode **StudentHead, long 
                 bool Quit = false;
                 switch (choice) {
                     case 1:
-                        system("cls");
                         printf("%s",AddNewStudent(StudentHead));
                         WriteToStudentFile(*StudentHead);
                         break;
                     case 2:
-                        system("cls");
                         printf("%s",DeleteStudent(StudentHead));
                         WriteToStudentFile(*StudentHead);
                         break;
                     case 3:
-                        system("cls");
                         PrintStudentInfo_ForAdmin(*StudentHead);
                         break;
                     case 4:
-                        system("cls");
                         PrintAllRecords(*StudentHead);
                         break;
                     case 5:
-                        system("cls");
                         printf("%s",ModifyStudentGrade(*StudentHead));
                         WriteToStudentFile(*StudentHead);
                         break;
                     case 6:
-                        system("cls");
                         Quit = true; break;
 
                 }
@@ -360,15 +353,12 @@ void  ChooseAdminFeatures(AdminNode *AdminHead, StudentNode **StudentHead, long 
                 bool Quit = false;
                 switch (choice) {
                     case 1:
-                        system("cls");
                         printf("%s", EditAdminName(AdminHead, ID));
                         break;
                     case 2:
-                        system("cls");
                         printf("%s", EditAdminPassword(AdminHead, ID));
                         break;
                     case 3:
-                        system("cls");
                         Quit = true;
                         break;
                 }

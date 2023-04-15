@@ -37,7 +37,7 @@ char *EditStudentName(StudentNode *Head,long ID){
     {
         if(ID == Current->Data.Student.ID)
         {
-            printf("\n\n  ------------<<Edit Your Name>>------------  \n");
+            printf("\n\n\t\t\t\t*-----------------------------------------------<<<<Edit Your Name>>>>-----------------------------------------------*\n\n");
             char *name;
             do{
                 printf("Enter your Name : ");
@@ -64,11 +64,11 @@ char *EditStudentPassword(StudentNode *Head,long ID){
     {
         if(ID == Current->Data.Student.ID)
         {
-            printf("\n\n  ------------<<Edit Your Password>>------------  \n");
+            printf("\n\n\t\t\t\t*-----------------------------------------------<<<<Edit Your Password>>>>-----------------------------------------------*\n\n");
             char *password;
             do{
                 printf("Enter your Password : ");
-                password = SetPassword();
+                password = CheckingPasswordStrength();
             }while(!strcmp(password,Current->Data.Student.Password) && printf("\n\n\"This name is the previous password\", try again...\n"));
             Current->Data.Student.Password = password;
             break;
@@ -85,7 +85,6 @@ char *EditStudentPassword(StudentNode *Head,long ID){
 
 void  ChooseStudentFeatures(StudentNode *Head, long ID){
     int n = 30;
-    system("cls");
     printf("\n\n\t\t\t\t*-----------------------------------------------<<<<Hello, "
                   "%s>>>>-----------------------------------------------*\n\n", StudentName(Head, ID),n,' ');
     while (1) {
@@ -93,16 +92,13 @@ void  ChooseStudentFeatures(StudentNode *Head, long ID){
         bool EOP = false;
         switch (choice) {
             case 1:
-                system("cls");
                 PrintStudentInfo(Head, ID); break;
             case 2:
-                system("cls");
+
                 printf("%s",EditStudentPassword(Head, ID)); break;
             case 3:
-                system("cls");
                 printf("%s",EditStudentName(Head, ID)); break;
             case 4:
-                system("cls");
                 EOP = true;
                 break;
         }

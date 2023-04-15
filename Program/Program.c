@@ -112,11 +112,11 @@ char* SetString(){
 char* SetPassword(){
 
     char *password = NULL, ch ;
-    password = (char *)malloc(120 * sizeof(char));
+    password = (char *)malloc(100 * sizeof(char));
 
     int cnt = 0;
 
-    while((ch = getch()) != 13){
+    while((ch = (char)getch()) != 13){
 
         if(cnt < 0) cnt = 0;
         if(ch == 8){
@@ -128,13 +128,11 @@ char* SetPassword(){
         }
         password[cnt++] = ch;
         putch('*');
-
     }
     password[cnt] = '\0';
 
     return password;
 }
-
 
 // convert String to int
 

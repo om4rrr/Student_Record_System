@@ -378,9 +378,9 @@ long CheckStudentID(StudentNode *Head){
             Current = Current->Link;
         }
         cnt++;
-    }while(flag && cnt < 10 && printf("\nWrong ID, Try again..\n\nEnter ID : "));
+    }while(flag && cnt < 6 && printf("\nWrong ID, Try again..\n\nEnter ID : "));
 
-    if(cnt >= 10) {printf("\nSorry, You entered wrong ID many times, try later...\n") ; return 0;}
+    if(cnt >= 6) {printf("\nSorry, You entered wrong ID many times, try later...\n") ; return 0;}
 
     return ID;
 }
