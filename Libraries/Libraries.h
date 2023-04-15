@@ -9,5 +9,7 @@
 #include <time.h>
 #include<windows.h>
 #include <conio.h>
+#include <unistd.h>
+
 
 #endif

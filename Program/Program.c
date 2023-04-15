@@ -116,16 +116,16 @@ char* SetPassword(){
 
     int cnt = 0;
 
-    while((ch = (char)getch()) != 13){
-
+    while((ch = (char)getch()) != 13 ){
         if(cnt < 0) cnt = 0;
-        if(ch == 8){
+        if(ch == 8 && cnt){
             putch('\b');
             putch('\0');
             putch('\b');
             cnt--;
             continue;
         }
+        if(ch == 8 && cnt == 0) continue;
         password[cnt++] = ch;
         putch('*');
     }
@@ -436,4 +436,5 @@ char *StoreAdminMail(AdminNode *ptr,long ID){
     }
     return studentMail;
 }
+
 

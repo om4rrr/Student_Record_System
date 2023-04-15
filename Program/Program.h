@@ -8,6 +8,7 @@
 
 #define MAX_STRING_LENGTH 50
 
+
 double CalcTotalDegree(StudentNode *head);
 
 char *CalcTotalGrade(double TotalDegree);
